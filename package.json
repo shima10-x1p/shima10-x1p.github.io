@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://shima10-x1p.github.io/shima10-x1p.github.io/",
+  "homepage": "https://shima10-x1p.github.io/",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
