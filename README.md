@@ -1,0 +1,1 @@
+# shima10-x1p.github.io
