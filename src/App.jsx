@@ -3,6 +3,7 @@ import './App.css'
 import NavBar from './components/NavBar'
 import InfoCard from './components/InfoCard'
 import LikesCard from './components/LikesCard'
+import YouTubeEmbedApp from './components/YoutubeEmbedApp'
 import xIcon from './assets/twitter.svg'
 import githubIcon from './assets/github.svg'
 import editIcon from './assets/edit.svg'
@@ -21,6 +22,8 @@ function App() {
       <div>
         <LikesCard />
       </div>
+      
+      <YouTubeEmbedApp />
     </>
   )
 }
