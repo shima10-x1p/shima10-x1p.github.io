@@ -21,7 +21,7 @@ function App() {
         <InfoCard title={"Github"} icon_src={githubIcon} link={"https://github.com/shima10-x1p"} />
         <InfoCard title={"Zenn"} icon_src={editIcon} link={"https://zenn.dev/shima10_x1p"} />
         <InfoCard title={"Profile"} icon_src={userIcon} link={"#"} />
-        <InfoCard title={"Tool Box"} icon_src={boxIcon} link={"/tool"} />
+        <InfoCard title={"Tool Box"} icon_src={boxIcon} link={"/#/tool"} />
       </div>
       <div>
         <LikesCard />

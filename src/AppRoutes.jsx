@@ -1,5 +1,5 @@
 import {
-    BrowserRouter,
+    HashRouter,
     Route,
     Routes
   } from "react-router-dom";
@@ -8,12 +8,12 @@ import {
   
   const AppRoutes = () => {
     return (
-      <BrowserRouter>
+      <HashRouter>
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/tool' element={<Tool />} />
         </Routes>
-      </BrowserRouter>
+      </HashRouter>
     )
   }
   
