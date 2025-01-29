@@ -1,7 +1,6 @@
 import { useState } from 'react'
-import './Tool.css'
+import './Profile.css'
 import NavBar from '../components/NavBar'
-import YouTubeEmbedApp from '../components/YoutubeEmbedApp'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -9,11 +8,10 @@ function App() {
   return (
     <>
       <NavBar />
-      <span className="flex font-medium text-gray-500 text-2xl">
-        Youtube埋め込み
-      </span>
-      <YouTubeEmbedApp />
+      <span className='text-gray-500'>工事中</span>
+      <div className='py-10'>
       <a href="/" className='border border-solid border-slate-500 text-gray-500 px-4 py-2 rounded-xl'>トップページ</a>
+      </div>
     </>
   )
 }

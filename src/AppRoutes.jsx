@@ -5,6 +5,7 @@ import {
   } from "react-router-dom";
   import Home from './home/Home';
   import Tool from './tool/Tool';
+  import Profile from './profile/Profile'
   
   const AppRoutes = () => {
     return (
@@ -12,6 +13,7 @@ import {
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/tool' element={<Tool />} />
+          <Route path='/profile' element={<Profile />} />
         </Routes>
       </HashRouter>
     )

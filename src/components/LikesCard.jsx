@@ -17,6 +17,11 @@ const LikesCard = () => {
                             🍯
                         </span>
                     </a>
+                    <a href="https://www.youtube.com/@KitakojiHisui" className="flex items-center">
+                        <span className="text-gray-500">
+                        ❇️
+                        </span>
+                    </a>
                 </div>
             </div>
         </div>

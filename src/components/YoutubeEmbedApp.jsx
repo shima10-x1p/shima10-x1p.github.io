@@ -118,7 +118,7 @@ const YouTubeEmbedApp = () => {
                 ></iframe>
               </CardContent>
             </Card>
-            <h2 className="text-lg font-medium mb-2">埋め込みURL</h2>
+            <h2 className="text-lg font-medium mb-2 text-gray-500">埋め込みURL</h2>
             <Input
               type="text"
               value={embedUrl}
