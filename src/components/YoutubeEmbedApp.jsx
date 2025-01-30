@@ -38,7 +38,7 @@ const YouTubeEmbedApp = () => {
   };
 
   return (
-    <div className="flex flex-col items-center py-4 border border-slate-800 rounded-xl my-5 px-3">
+    <div className="flex flex-col items-center py-4 border border-slate-700 rounded-xl my-5 px-3">
       <div className="flex flex-col items-center gap-4 w-full">
         <div className="flex flex-col">
           <Input
