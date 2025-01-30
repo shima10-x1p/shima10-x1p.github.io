@@ -7,7 +7,7 @@ import { Card, CardContent } from '../components/ui/card'
 import ytIcon from '../assets/youtube.svg'
 
 function Button({ children, onClick, variant }) {
-	const baseStyle = "px-4 py-2 rounded-md focus:outline-none transition-all";
+	const baseStyle = "px-4 py-2 rounded-xl focus:outline-none transition-all";
 	const styles = {
 		default: "border border-solid border-slate-700 text-gray-500 hover:bg-gray-400",
 		outline: "border border-solid border-slate-800 text-gray-500 px-4 py-2 rounded-xl hover:bg-gray-400 hover:text-white",
