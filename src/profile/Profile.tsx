@@ -1,6 +1,6 @@
 import './Profile.css'
 import Navbar from '@/components/custom/Navbar'
-import { Button } from '@/components/ui/Button'
+import { Button } from '../components/ui/button'
 
 
 function Profile() {

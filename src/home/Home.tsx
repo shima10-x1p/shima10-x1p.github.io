@@ -1,5 +1,5 @@
 import './Home.css'
-import { Separator } from '@/components/ui/Separator'
+import { Separator } from '../components/ui/separator'
 import Navbar from '@/components/custom/Navbar'
 import BigButton from '@/components/custom/BigButton'
 
