@@ -7,6 +7,7 @@ import icon_twitter from "/src/assets/twitter.svg"
 import icon_github from "/src/assets/github.svg"
 import icon_zenn from "/src/assets/edit.svg"
 import icon_user from "/src/assets/user.svg"
+import icon_box from "/src/assets/box.svg"
 
 import icon_ngo from "/src/assets/ngo.svg"
 import icon_koha from "/src/assets/koha.svg"
@@ -20,6 +21,7 @@ function Home() {
         <BigButton title={"GitHub"} icon_src={icon_github} link={"https://github.com/shima10-x1p"} />
         <BigButton title={"Zenn"} icon_src={icon_zenn} link={"https://zenn.dev/shima10_x1p"} />
         <BigButton title={"Profile"} icon_src={icon_user} link={"/#/profile"} />
+        <BigButton title={"Tools"} icon_src={icon_box} link={"/#/tools"} />
       </div>
       <Separator className='my-10'/>
       <h1 className='text-2xl font-bold mb-5 text-left text-slate-500'>リンク集</h1>
