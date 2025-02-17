@@ -1,13 +1,12 @@
-import React from 'react';
-import iconPic from '/src/assets/mOlgmiSO_400x400.jpg'
+import icon from "/src/assets/images/user_icon.jpg"
 
 const Navbar = () => {
     return (
         <nav className='mx-auto'>
             <div className="flex">
                 <a href="/" className="flex py-4 my-3 items-center">
-                    <img className='rounded-full' width={100} height={100} src={iconPic} alt="" />
-                    <span className="font-semibold text-gray-500 text-3xl px-7">
+                    <img className='rounded-full' width={100} height={100} src={icon} alt="" />
+                    <span className="font-semibold text-slate-500 text-3xl px-7">
                         しま (@shima10_x1p)
                     </span>
                 </a>
