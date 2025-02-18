@@ -8,7 +8,7 @@ function Profile() {
     <>
       <Navbar />
        <Button asChild variant="outline" size="lg" className='mt-10'>
-          <a className='text-slate-500' href="/">トップページ</a>
+          <a className='text-slate-500' href="/#/">トップページ</a>
        </Button>
     </>
   )

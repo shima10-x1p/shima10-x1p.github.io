@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "../../components/ui/card";
 import { Input } from "../../components/ui/input";
 import { Button } from "../../components/ui/button";
+import Navbar from "../../components/custom/Navbar";
 
 export default function YtTimeStamp() {
   const [videoUrl, setVideoUrl] = useState("");
@@ -48,62 +49,69 @@ export default function YtTimeStamp() {
   };
 
   return (
-    <Card className="max-w-md mx-auto">
-      <CardHeader>
-        <CardTitle>YouTube タイムスタンプ生成</CardTitle>
-      </CardHeader>
-      <CardContent>
-        <Input
-          type="text"
-          placeholder="YouTubeのURLを入力"
-          value={videoUrl}
-          onChange={(e) => setVideoUrl(e.target.value)}
-          className="mb-2"
-        />
-        <div className="flex gap-2 mb-2">
+    <>
+      <Navbar />
+      <h1 className='text-2xl font-bold mb-5 text-center text-slate-500'>YouTubeリンクにタイムスタンプつけるやつ (GPT-4o)</h1>
+      <Card className="max-w-md mx-auto">
+        <CardHeader>
+          <CardTitle className="text-slate-500">YouTube タイムスタンプ生成</CardTitle>
+        </CardHeader>
+        <CardContent>
           <Input
-            type="number"
-            placeholder="時"
-            value={hours}
-            onChange={(e) => setHours(e.target.value)}
-            className="w-1/3"
+            type="text"
+            placeholder="YouTubeのURLを入力"
+            value={videoUrl}
+            onChange={(e) => setVideoUrl(e.target.value)}
+            className="mb-2"
           />
-          <Input
-            type="number"
-            placeholder="分"
-            value={minutes}
-            onChange={(e) => setMinutes(e.target.value)}
-            className="w-1/3"
-          />
-          <Input
-            type="number"
-            placeholder="秒"
-            value={seconds}
-            onChange={(e) => setSeconds(e.target.value)}
-            className="w-1/3"
-          />
-        </div>
-        <Button
-          onClick={generateTimestampUrl}
-          className="w-full mb-2" variant="outline"
-        >
-          生成
-        </Button>
-        {generatedUrl && (
-          <div className="p-2 border rounded bg-slate-800 flex flex-col items-center">
-            <p className="break-all text-sm">{generatedUrl}</p>
-            <Button
-              onClick={copyToClipboard}
-              className="mt-2"
-            >
-              コピー
-            </Button>
+          <div className="flex gap-2 mb-2">
+            <Input
+              type="number"
+              placeholder="時"
+              value={hours}
+              onChange={(e) => setHours(e.target.value)}
+              className="w-1/3"
+            />
+            <Input
+              type="number"
+              placeholder="分"
+              value={minutes}
+              onChange={(e) => setMinutes(e.target.value)}
+              className="w-1/3"
+            />
+            <Input
+              type="number"
+              placeholder="秒"
+              value={seconds}
+              onChange={(e) => setSeconds(e.target.value)}
+              className="w-1/3"
+            />
           </div>
-        )}
-      </CardContent>
-      <CardFooter>
-        <p className="text-sm text-slate-500">YouTubeのURLとタイムスタンプを入力してください。</p>
-      </CardFooter>
-    </Card>
+          <Button
+            onClick={generateTimestampUrl}
+            className="w-full mb-2 text-slate-500" variant="outline"
+          >
+            生成
+          </Button>
+          {generatedUrl && (
+            <div className="p-2 border rounded bg-slate-800 flex flex-col items-center">
+              <p className="break-all text-sm">{generatedUrl}</p>
+              <Button
+                onClick={copyToClipboard}
+                className="mt-2 text-slate-500"
+              >
+                コピー
+              </Button>
+            </div>
+          )}
+        </CardContent>
+        <CardFooter>
+          <p className="text-sm text-slate-500">YouTubeのURLとタイムスタンプを入力してください。</p>
+        </CardFooter>
+      </Card>
+      <Button asChild variant="outline" size="lg" className='mt-10'>
+        <a className='text-slate-500' href="/#/tools">戻る</a>
+      </Button>
+    </>
   );
 }
