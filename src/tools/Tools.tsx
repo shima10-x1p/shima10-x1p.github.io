@@ -1,5 +1,4 @@
 import Navbar from "../components/custom/Navbar"
-import YtTimeStamp from "./YtTimeStamp/YtTimeStamp"
 import { Button } from '../components/ui/button'
 import BigButton from '../components/custom/BigButton'
 
