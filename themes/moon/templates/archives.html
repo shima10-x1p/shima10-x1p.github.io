@@ -1,0 +1,20 @@
+{#
+  Minimal archives page: list all articles by date.
+#}
+{% extends "base.html" %}
+
+{% block title %}Archives · {{ SITENAME }}{% endblock %}
+
+{% block content %}
+  <h1 class="mb-4">Archives</h1>
+  <ul class="list-unstyled vstack gap-2">
+    {% for article in dates %}
+      <li>
+        <span class="text-muted small">{{ article.locale_date }}</span>
+        · <a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a>
+      </li>
+    {% else %}
+      <li class="text-muted">No articles yet.</li>
+    {% endfor %}
+  </ul>
+{% endblock %}

@@ -1,0 +1,80 @@
+{#
+  Minimal Pelican base template using Bootstrap 5.
+  Hyde-like layout: left sidebar (sticky on desktop), main content on the right.
+  On small screens, the sidebar renders above the content.
+#}
+{% extends "!simple/base.html" %}
+
+{% block head %}
+  {{ super() }}
+  <!-- Bootstrap 5 CSS from CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <!-- Noto Sans JP (Google Fonts) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <script>
+    // Force Bootstrap dark color mode
+    document.documentElement.setAttribute('data-bs-theme', 'dark');
+  </script>
+  <style>
+    /* Apply Noto Sans JP across the site via Bootstrap variable */
+    :root {
+      /* Make sure Bootstrap components inherit this font */
+      --bs-body-font-family: "Noto Sans JP", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    }
+    /* Minimal tweaks for Hyde-like layout */
+    .brand a { text-decoration: none; }
+    .sidebar .nav-link { padding-left: 0; }
+    .sidebar .nav-link.active { font-weight: 600; }
+    .avatar { width: 128px; height: 128px; object-fit: cover; }
+  </style>
+{% endblock %}
+
+{% block body %}
+  <div class="container-fluid">
+    <div class="row min-vh-100">
+      <!-- Sidebar: top on mobile, left on lg+ (pure grid div) -->
+      <div class="sidebar col-12 col-md-4 border-bottom border-md-end bg-body-tertiary p-md-5 order-0" role="complementary">
+        <!-- 1) Avatar icon -->
+        <div class="text-center text-md-start my-3">
+          <a href="{{ SITEURL or '/' }}" class="d-inline-block">
+            <img class="avatar rounded-circle border border-2 my-3" src="{{ AVATAR_URL or 'https://github.com/shima10-x1p.png' }}" alt="{{ (AUTHOR or SITENAME) ~ ' avatar' }}">
+          </a>
+        </div>
+
+        <!-- 2) Name (prefer AUTHOR; fallback to SITENAME) -->
+        <div class="text-center text-md-start mb-3">
+          <div class="fs-3 fw-semibold">{{ AUTHOR or SITENAME }}</div>
+          {% if SITESUBTITLE %}
+            <div class="text-muted small">{{ SITESUBTITLE }}</div>
+          {% endif %}
+        </div>
+
+        <!-- 3) SOCIAL links -->
+        {% block sidebar %}
+          {% if SOCIAL %}
+          <div class="d-flex gap-2 justify-content-center justify-content-md-start flex-wrap">
+            {% for name, url in SOCIAL %}
+              <a class="btn btn-sm btn-outline-secondary" href="{{ url }}">{{ name }}</a>
+            {% endfor %}
+          </div>
+          {% else %}
+          <div class="text-muted small">No social links configured.</div>
+          {% endif %}
+        {% endblock %}
+      </div>
+
+      <!-- Main content area (pure grid div) -->
+      <div class="col-12 col-md-8 py-4 py-md-4 px-4 px-md-5 order-1" role="main">
+        {% block content %}{% endblock %}
+        <footer class="border-top pt-4 mt-5 small text-muted">
+          <div>{{ SITENAME }} · Powered by <a href="https://getpelican.com/">Pelican</a></div>
+        </footer>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap 5 JS (optional) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+{% endblock %}

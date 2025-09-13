@@ -1,0 +1,54 @@
+{#
+Minimal index template: lists recent articles with pagination if enabled.
+#}
+{% extends "base.html" %}
+
+{% block title %}{{ SITENAME }}{% endblock %}
+
+{% block content %}
+<div class="vstack gap-4">
+  {% for article in articles %}
+  <article class="card shadow-sm">
+    <div class="card-body">
+      <h2 class="h4 card-title mb-1">
+        <a class="text-light link-dark" href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a>
+      </h2>
+      <div class="text-muted small mb-2">
+        {{ article.locale_date }}
+        {% if article.category %} · <a href="{{ SITEURL }}/{{ article.category.url }}">{{ article.category }}</a>{%
+        endif %}
+      </div>
+      {% if article.summary %}
+      <div class="card-text">{{ article.summary }}</div>
+      {% else %}
+      <div class="card-text">{{ article.content|striptags|truncate(200) }}</div>
+      {% endif %}
+    </div>
+  </article>
+  {% else %}
+  <p class="text-muted">No articles yet.</p>
+  {% endfor %}
+</div>
+
+{% if articles_paginator %}
+<nav class="mt-4" aria-label="Pagination">
+  <ul class="pagination">
+    {% if articles_previous_page %}
+    <li class="page-item"><a class="page-link"
+        href="{{ SITEURL }}/{{ page_name }}{{ articles_previous_page if articles_previous_page.number > 1 else '' }}.html">Newer</a>
+    </li>
+    {% else %}
+    <li class="page-item disabled"><span class="page-link">Newer</span></li>
+    {% endif %}
+
+    {% if articles_next_page %}
+    <li class="page-item"><a class="page-link"
+        href="{{ SITEURL }}/{{ page_name }}{{ articles_next_page.number }}.html">Older</a></li>
+    {% else %}
+    <li class="page-item disabled"><span class="page-link">Older</span></li>
+    {% endif %}
+  </ul>
+</nav>
+
+{% endif %}
+{% endblock %}
