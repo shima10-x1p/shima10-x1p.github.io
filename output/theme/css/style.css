@@ -1,0 +1,280 @@
+:root {
+    --bs-body-bg: #121212;
+    /* より深いダークグレー */
+    --bs-body-color: #e0e0e0;
+    --accent-color: #E43F3B;
+    --accent-hover: #c03531;
+    --card-bg: #1e1e1e;
+    --sidebar-bg: #181818;
+    --border-color: #333;
+}
+
+body {
+    font-family: 'Noto Sans JP', sans-serif;
+    background-color: var(--bs-body-bg);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: 700;
+    color: #ffffff;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: color 0.2s ease;
+}
+
+a:hover {
+    color: var(--accent-color);
+}
+
+/* --- Utility Classes --- */
+.text-accent {
+    color: var(--accent-color) !important;
+}
+
+.bg-accent {
+    background-color: var(--accent-color) !important;
+}
+
+.btn-accent {
+    background-color: var(--accent-color);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 0.5rem 1.5rem;
+    transition: background-color 0.2s;
+    white-space: nowrap;
+}
+
+.btn-accent:hover {
+    background-color: var(--accent-hover);
+    color: #fff;
+}
+
+.btn-outline-accent {
+    background-color: transparent;
+    color: var(--accent-color);
+    border: 1px solid var(--accent-color);
+    border-radius: 4px;
+    padding: 0.5rem 1.5rem;
+    white-space: nowrap;
+}
+
+.btn-outline-accent:hover {
+    background-color: var(--accent-color);
+    color: #fff;
+}
+
+/* --- Sidebar Styling --- */
+.sidebar {
+    background-color: var(--sidebar-bg);
+    border-right: 1px solid var(--border-color);
+    min-height: 100vh;
+    padding: 2rem;
+    position: sticky;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: space-between;  Mobile layout change affects this */
+}
+
+/* Flex column layout for PC default */
+.sidebar-content-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.blog-title {
+    font-size: 1.8rem;
+    margin-bottom: 0;
+    letter-spacing: -0.05rem;
+}
+
+.blog-subtitle {
+    font-size: 0.9rem;
+    color: #888;
+    margin-bottom: 2rem;
+}
+
+.nav-link {
+    color: #aaa;
+    padding: 0.5rem 0;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    color: var(--accent-color);
+}
+
+.nav-link.active {
+    font-weight: bold;
+    padding-left: 10px;
+    border-left: 3px solid var(--accent-color);
+}
+
+.profile-section img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border: 2px solid var(--accent-color);
+}
+
+.social-links a {
+    font-size: 1.2rem;
+    margin-right: 1rem;
+    color: #888;
+}
+
+.social-links a:hover {
+    color: var(--accent-color);
+}
+
+/* --- Main Content Styling --- */
+.main-content {
+    padding: 3rem 4rem;
+}
+
+.article-card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    transition: transform 0.2s, border-color 0.2s;
+}
+
+/* .article-card:hover {
+    border-color: var(--accent-color);
+    transform: translateY(-2px);
+} */
+
+.article-meta {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.85rem;
+    color: #888;
+    margin-bottom: 0.8rem;
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.article-meta i {
+    color: var(--accent-color);
+    margin-right: 5px;
+}
+
+.article-title {
+    font-size: 1.75rem;
+    margin-bottom: 1rem;
+    line-height: 1.4;
+}
+
+.article-title a {
+    color: #fff;
+}
+
+.article-title a:hover {
+    color: var(--accent-color);
+}
+
+.article-summary {
+    color: #ccc;
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+}
+
+.tag-badge {
+    background-color: #2d2d2d;
+    color: #aaa;
+    font-size: 0.75rem;
+    padding: 4px 8px;
+    border-radius: 4px;
+    margin-right: 5px;
+    transition: all 0.2s;
+}
+
+.tag-badge:hover {
+    background-color: var(--accent-color);
+    color: #fff;
+}
+
+/* --- Pagination --- */
+.pagination .page-link {
+    background-color: var(--card-bg);
+    border-color: var(--border-color);
+    color: #fff;
+}
+
+.pagination .page-link:hover {
+    background-color: #333;
+    border-color: var(--border-color);
+    color: var(--accent-color);
+}
+
+.pagination .active>.page-link {
+    background-color: var(--accent-color);
+    border-color: var(--accent-color);
+}
+
+/* --- Mobile Toggler Style --- */
+.sidebar-toggler {
+    border: 1px solid var(--border-color);
+    color: #fff;
+    padding: 0.5rem 0.75rem;
+    border-radius: 4px;
+    background: transparent;
+}
+
+.sidebar-toggler:focus {
+    box-shadow: 0 0 0 0.25rem rgba(228, 63, 59, 0.25);
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 991.98px) {
+    .sidebar {
+        min-height: auto;
+        position: relative;
+        border-right: none;
+        border-bottom: 1px solid var(--border-color);
+        padding: 1rem 1.5rem;
+        display: block;
+        /* Reset flex */
+    }
+
+    .blog-subtitle {
+        margin-bottom: 0;
+        /* スマホではサブタイトル下の余白を詰める */
+    }
+
+    .main-content {
+        padding: 2rem 1rem;
+    }
+
+    /* スマホで展開したとき、中身に少し余白を入れる */
+    .sidebar-collapse-content {
+        margin-top: 1.5rem;
+        padding-top: 1rem;
+        border-top: 1px solid #333;
+    }
+
+    /* .profile-section の非表示設定はHTMLクラス(d-none)側で制御するため削除しました */
+
+    /* スマホではサイドバーのコンテンツ全体（縦並び）の高さを確保しない */
+    .sidebar-content-wrapper {
+        height: auto;
+        display: block;
+    }
+}

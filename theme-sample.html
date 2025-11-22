@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="ja" data-bs-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Tech Blog - Pelican Theme Mock</title>
+    <!-- Bootstrap 5.3 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome (Icons) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts (Noto Sans JP & Roboto Mono) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Roboto+Mono:wght@400;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --bs-body-bg: #121212;
+            /* より深いダークグレー */
+            --bs-body-color: #e0e0e0;
+            --accent-color: #E43F3B;
+            --accent-hover: #c03531;
+            --card-bg: #1e1e1e;
+            --sidebar-bg: #181818;
+            --border-color: #333;
+        }
+
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: var(--bs-body-bg);
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-weight: 700;
+            color: #ffffff;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.2s ease;
+        }
+
+        a:hover {
+            color: var(--accent-color);
+        }
+
+        /* --- Utility Classes --- */
+        .text-accent {
+            color: var(--accent-color) !important;
+        }
+
+        .bg-accent {
+            background-color: var(--accent-color) !important;
+        }
+
+        .btn-accent {
+            background-color: var(--accent-color);
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            padding: 0.5rem 1.5rem;
+            transition: background-color 0.2s;
+            white-space: nowrap;
+        }
+
+        .btn-accent:hover {
+            background-color: var(--accent-hover);
+            color: #fff;
+        }
+
+        .btn-outline-accent {
+            background-color: transparent;
+            color: var(--accent-color);
+            border: 1px solid var(--accent-color);
+            border-radius: 4px;
+            padding: 0.5rem 1.5rem;
+            white-space: nowrap;
+        }
+
+        .btn-outline-accent:hover {
+            background-color: var(--accent-color);
+            color: #fff;
+        }
+
+        /* --- Sidebar Styling --- */
+        .sidebar {
+            background-color: var(--sidebar-bg);
+            border-right: 1px solid var(--border-color);
+            min-height: 100vh;
+            padding: 2rem;
+            position: sticky;
+            top: 0;
+            display: flex;
+            flex-direction: column;
+            /* justify-content: space-between;  Mobile layout change affects this */
+        }
+
+        /* Flex column layout for PC default */
+        .sidebar-content-wrapper {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+        }
+
+        .blog-title {
+            font-size: 1.8rem;
+            margin-bottom: 0;
+            letter-spacing: -0.05rem;
+        }
+
+        .blog-subtitle {
+            font-size: 0.9rem;
+            color: #888;
+            margin-bottom: 2rem;
+        }
+
+        .nav-link {
+            color: #aaa;
+            padding: 0.5rem 0;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--accent-color);
+        }
+
+        .nav-link.active {
+            font-weight: bold;
+            padding-left: 10px;
+            border-left: 3px solid var(--accent-color);
+        }
+
+        .profile-section img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border: 2px solid var(--accent-color);
+        }
+
+        .social-links a {
+            font-size: 1.2rem;
+            margin-right: 1rem;
+            color: #888;
+        }
+
+        .social-links a:hover {
+            color: var(--accent-color);
+        }
+
+        /* --- Main Content Styling --- */
+        .main-content {
+            padding: 3rem 4rem;
+        }
+
+        .article-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            transition: transform 0.2s, border-color 0.2s;
+        }
+
+        .article-card:hover {
+            border-color: var(--accent-color);
+            transform: translateY(-2px);
+        }
+
+        .article-meta {
+            font-family: 'Roboto Mono', monospace;
+            font-size: 0.85rem;
+            color: #888;
+            margin-bottom: 0.8rem;
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .article-meta i {
+            color: var(--accent-color);
+            margin-right: 5px;
+        }
+
+        .article-title {
+            font-size: 1.75rem;
+            margin-bottom: 1rem;
+            line-height: 1.4;
+        }
+
+        .article-title a {
+            color: #fff;
+        }
+
+        .article-title a:hover {
+            color: var(--accent-color);
+        }
+
+        .article-summary {
+            color: #ccc;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .tag-badge {
+            background-color: #2d2d2d;
+            color: #aaa;
+            font-size: 0.75rem;
+            padding: 4px 8px;
+            border-radius: 4px;
+            margin-right: 5px;
+            transition: all 0.2s;
+        }
+
+        .tag-badge:hover {
+            background-color: var(--accent-color);
+            color: #fff;
+        }
+
+        /* --- Pagination --- */
+        .pagination .page-link {
+            background-color: var(--card-bg);
+            border-color: var(--border-color);
+            color: #fff;
+        }
+
+        .pagination .page-link:hover {
+            background-color: #333;
+            border-color: var(--border-color);
+            color: var(--accent-color);
+        }
+
+        .pagination .active>.page-link {
+            background-color: var(--accent-color);
+            border-color: var(--accent-color);
+        }
+
+        /* --- Mobile Toggler Style --- */
+        .sidebar-toggler {
+            border: 1px solid var(--border-color);
+            color: #fff;
+            padding: 0.5rem 0.75rem;
+            border-radius: 4px;
+            background: transparent;
+        }
+
+        .sidebar-toggler:focus {
+            box-shadow: 0 0 0 0.25rem rgba(228, 63, 59, 0.25);
+        }
+
+        /* --- Responsive Adjustments --- */
+        @media (max-width: 991.98px) {
+            .sidebar {
+                min-height: auto;
+                position: relative;
+                border-right: none;
+                border-bottom: 1px solid var(--border-color);
+                padding: 1rem 1.5rem;
+                display: block;
+                /* Reset flex */
+            }
+
+            .blog-subtitle {
+                margin-bottom: 0;
+                /* スマホではサブタイトル下の余白を詰める */
+            }
+
+            .main-content {
+                padding: 2rem 1rem;
+            }
+
+            /* スマホで展開したとき、中身に少し余白を入れる */
+            .sidebar-collapse-content {
+                margin-top: 1.5rem;
+                padding-top: 1rem;
+                border-top: 1px solid #333;
+            }
+
+            /* .profile-section の非表示設定はHTMLクラス(d-none)側で制御するため削除しました */
+
+            /* スマホではサイドバーのコンテンツ全体（縦並び）の高さを確保しない */
+            .sidebar-content-wrapper {
+                height: auto;
+                display: block;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container-fluid">
+        <div class="row">
+
+            <!-- Left Sidebar Navigation -->
+            <nav class="col-lg-3 col-xl-2 sidebar">
+
+                <!-- Header Section -->
+                <div class="mb-lg-4">
+                    <!-- Profile Image (PC View: Top) -->
+                    <div class="profile-section mb-3 d-none d-lg-block">
+                        <img src="https://placehold.co/80x80/333/fff?text=ME" class="rounded-circle" alt="Profile">
+                    </div>
+
+                    <!-- Title & Toggler Row -->
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="d-flex align-items-center gap-3">
+                            <!-- Mobile Profile Image (Small, Left of Title) -->
+                            <img src="https://placehold.co/80x80/333/fff?text=ME" class="rounded-circle d-lg-none"
+                                alt="Profile" style="width: 40px; height: 40px; border: 1px solid var(--accent-color);">
+
+                            <div>
+                                <h1 class="blog-title"><a href="#">DevLogs</a></h1>
+                                <p class="blog-subtitle d-lg-block mb-0">Python, Web, and Life.</p>
+                            </div>
+                        </div>
+
+                        <!-- Mobile Toggler Button -->
+                        <button class="sidebar-toggler d-lg-none" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#sidebarCollapse" aria-controls="sidebarCollapse" aria-expanded="false"
+                            aria-label="Toggle navigation">
+                            <i class="fas fa-bars"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Collapsible Content (Always visible on Desktop .d-lg-block) -->
+                <div class="collapse d-lg-block sidebar-collapse-content" id="sidebarCollapse">
+                    <div class="sidebar-content-wrapper">
+
+                        <!-- Top Section: Nav Links (Profile image moved out from here) -->
+                        <div>
+                            <div class="sidebar-nav-container d-flex flex-column gap-2">
+                                <a href="#" class="nav-link active">
+                                    <i class="fas fa-home fa-fw"></i> Home
+                                </a>
+                                <a href="#" class="nav-link">
+                                    <i class="fas fa-user fa-fw"></i> About
+                                </a>
+                                <a href="#" class="nav-link">
+                                    <i class="fas fa-archive fa-fw"></i> Archives
+                                </a>
+                                <a href="#" class="nav-link">
+                                    <i class="fas fa-tags fa-fw"></i> Categories
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Bottom Section: Social & Copyright -->
+                        <div class="mt-4 pt-4 pt-lg-0">
+                            <div class="social-links mb-3">
+                                <a href="#"><i class="fab fa-github"></i></a>
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                                <a href="#"><i class="fas fa-rss"></i></a>
+                            </div>
+                            <p class="text-muted small mb-0">&copy; 2025 My Name.</p>
+                        </div>
+
+                    </div>
+                </div>
+            </nav>
+
+            <!-- Right Main Content -->
+            <main class="col-lg-9 col-xl-10 main-content">
+
+                <!-- Section Header removed -->
+
+                <!-- Article 1 -->
+                <article class="article-card">
+                    <div class="article-meta">
+                        <span><i class="far fa-calendar-alt"></i> 2025-11-22</span>
+                        <span><i class="far fa-folder"></i> Python</span>
+                    </div>
+                    <h3 class="article-title">
+                        <a href="#">Pelicanで技術ブログを構築する：テーマカスタマイズ編</a>
+                    </h3>
+                    <p class="article-summary">
+                        Python製静的サイトジェネレーター「Pelican」を使ってブログを作り始めました。Bootstrap
+                        5を使ったオリジナルテーマの作成手順と、Jinja2テンプレートのハマりポイントについて解説します。デザインはシンプルかつモダンを目指しました...
+                    </p>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="tags">
+                            <a href="#" class="tag-badge">#Pelican</a>
+                            <a href="#" class="tag-badge">#WebDesign</a>
+                            <a href="#" class="tag-badge">#CSS</a>
+                        </div>
+                        <a href="#" class="btn btn-accent btn-sm">Read More</a>
+                    </div>
+                </article>
+
+                <!-- Article 2 -->
+                <article class="article-card">
+                    <div class="article-meta">
+                        <span><i class="far fa-calendar-alt"></i> 2025-11-18</span>
+                        <span><i class="far fa-folder"></i> Development</span>
+                    </div>
+                    <h3 class="article-title">
+                        <a href="#">WSL2とDockerで快適な開発環境を作る</a>
+                    </h3>
+                    <p class="article-summary">
+                        Windows環境での開発において、WSL2とDocker Desktopの組み合わせは現時点で最強の選択肢の一つです。メモリリソースの最適化設定や、VS Code Remote
+                        Containersとの連携方法について備忘録をまとめました。
+                    </p>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="tags">
+                            <a href="#" class="tag-badge">#Docker</a>
+                            <a href="#" class="tag-badge">#Linux</a>
+                        </div>
+                        <a href="#" class="btn btn-outline-accent btn-sm">Read More</a>
+                    </div>
+                </article>
+
+                <!-- Article 3 (Text only mock) -->
+                <article class="article-card">
+                    <div class="article-meta">
+                        <span><i class="far fa-calendar-alt"></i> 2025-11-10</span>
+                        <span><i class="far fa-folder"></i> Life</span>
+                    </div>
+                    <h3 class="article-title">
+                        <a href="#">デザインにおける「余白」の重要性について</a>
+                    </h3>
+                    <p class="article-summary">
+                        機能的なUIを作るためには、要素を詰め込むことよりも、適切な余白（ホワイトスペース）を持たせることが重要です。今回はマテリアルデザインのガイドラインを参考に、心地よい余白の比率について考察します。
+                    </p>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="tags">
+                            <a href="#" class="tag-badge">#UI/UX</a>
+                            <a href="#" class="tag-badge">#Design</a>
+                        </div>
+                        <a href="#" class="btn btn-outline-accent btn-sm">Read More</a>
+                    </div>
+                </article>
+
+                <!-- Pagination -->
+                <nav aria-label="Page navigation" class="mt-5">
+                    <ul class="pagination justify-content-center">
+                        <li class="page-item disabled">
+                            <a class="page-link" href="#" tabindex="-1">Previous</a>
+                        </li>
+                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">Next</a>
+                        </li>
+                    </ul>
+                </nav>
+
+            </main>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

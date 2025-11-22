@@ -1,12 +1,12 @@
-AUTHOR = 'しま(shima10-x1p)'
-SITENAME = '月のうらがわ'
+AUTHOR = 'しま（shima10-x1p）'
+SITENAME = '夏島諸島'
 SITEURL = ""
 
 PATH = "content"
 
 TIMEZONE = 'Asia/Tokyo'
 
-DEFAULT_LANG = 'ja'
+DEFAULT_LANG = 'Japanese'
 
 # Feed generation is usually not desired when developing
 FEED_ALL_ATOM = None
@@ -25,18 +25,23 @@ LINKS = (
 
 # Social widget
 SOCIAL = (
-    ("GitHub", "https://github.com/shima10-x1p"),
-    ("Twitter", "https://twitter.com/shima10_x1p"),
+    ("You can add links in your config file", "#"),
+    ("Another social link", "#"),
 )
 
 DEFAULT_PAGINATION = 10
 
 # Uncomment following line if you want document-relative URLs when developing
 # RELATIVE_URLS = True
-STATIC_PATHS = ["images", "extra/CNAME"]
-EXTRA_PATH_METADATA = {"extra/CNAME": {"path": "CNAME"}}
+# STATIC_PATHS
+STATIC_PATHS = ["extra/CNAME"]
 
-# Use custom template overrides (kept minimal, Bootstrap 5 based)
-# This points Pelican to look for templates in themes/moon/template first,
-# falling back to the active theme (or the built-in simple theme) when missing.
-THEME = "themes/moon"
+EXTRA_PATH_METADATA = {
+    "extra/CNAME": {"path": "CNAME"},
+}
+
+THEME = 'theme/natsu-shima'
+
+AUTHOR_BIO = {
+    "しま（shima10-x1p）": "PythonとWeb開発が好きなエンジニアです。Pelicanでブログを書いています。"
+}
