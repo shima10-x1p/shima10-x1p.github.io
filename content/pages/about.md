@@ -5,7 +5,7 @@ Template: about
 Avatar: https://github.com/shima10-x1p.png
 Role: Python Engineer / Web Developer
 Bio: PythonとWeb開発が好きなエンジニアです。Pelicanを使った静的サイト生成や、モダンなWeb技術に興味があります。<br>このブログ「夏島諸島」では、開発中の技術メモや、日々の気づき、趣味のプロジェクトについて共有していきます。
-Skills: Python, JavaScript, SQL, Docker, Pelican
+Skills: Python, Docker
 
 ## Background
 
