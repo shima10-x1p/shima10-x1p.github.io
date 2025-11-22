@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="ja" data-bs-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - 夏島諸島</title>
+    <!-- Bootstrap 5.3 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome (Icons) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts (Noto Sans JP & Roboto Mono) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Roboto+Mono:wght@400;700&display=swap"
+        rel="stylesheet">
+
+    <!-- 既存のstyle.cssの内容を埋め込み（本来はリンク読み込み） -->
+    <style>
+        :root {
+            --bs-body-bg: #121212;
+            --bs-body-color: #e0e0e0;
+            --accent-color: #E43F3B;
+            --accent-hover: #c03531;
+            --card-bg: #1e1e1e;
+            --sidebar-bg: #181818;
+            --border-color: #333;
+        }
+
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: var(--bs-body-bg);
+            color: var(--bs-body-color);
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-weight: 700;
+            color: #ffffff;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.2s ease;
+        }
+
+        a:hover {
+            color: var(--accent-color);
+        }
+
+        /* --- Sidebar Styling (Existing) --- */
+        .sidebar {
+            background-color: var(--sidebar-bg);
+            border-right: 1px solid var(--border-color);
+            min-height: 100vh;
+            padding: 2rem;
+            position: sticky;
+            top: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sidebar-content-wrapper {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+        }
+
+        .blog-title {
+            font-size: 1.8rem;
+            margin-bottom: 0;
+            letter-spacing: -0.05rem;
+        }
+
+        .blog-subtitle {
+            font-size: 0.9rem;
+            color: #888;
+            margin-bottom: 2rem;
+        }
+
+        .nav-link {
+            color: #aaa;
+            padding: 0.5rem 0;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--accent-color);
+        }
+
+        .nav-link.active {
+            font-weight: bold;
+            padding-left: 10px;
+            border-left: 3px solid var(--accent-color);
+        }
+
+        /* Mobile Toggler */
+        .sidebar-toggler {
+            border: 1px solid var(--border-color);
+            color: #fff;
+            padding: 0.5rem 0.75rem;
+            border-radius: 4px;
+            background: transparent;
+        }
+
+        /* --- Main Content Layout --- */
+        .main-content {
+            padding: 3rem 4rem;
+        }
+
+        @media (max-width: 991.98px) {
+            .sidebar {
+                min-height: auto;
+                position: relative;
+                border-right: none;
+                border-bottom: 1px solid var(--border-color);
+                padding: 1rem 1.5rem;
+                display: block;
+            }
+
+            .main-content {
+                padding: 2rem 1.5rem;
+            }
+
+            .profile-section.pc-view {
+                display: none !important;
+            }
+        }
+
+        /* =========================================
+           About Page Specific Styles
+           ========================================= */
+
+        .about-header {
+            margin-bottom: 3rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 1rem;
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+        }
+
+        .about-header h1 {
+            font-size: 2.5rem;
+            margin: 0;
+            position: relative;
+        }
+
+        /* タイトルの下のアクセントライン */
+        .about-header h1::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background-color: var(--accent-color);
+            margin-top: 10px;
+            border-radius: 2px;
+        }
+
+        /* プロフィールカード */
+        .profile-hero {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 3rem;
+            margin-bottom: 3rem;
+            display: flex;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .profile-avatar-lg {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--accent-color);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            flex-shrink: 0;
+        }
+
+        .profile-info h2 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .profile-role {
+            font-family: 'Roboto Mono', monospace;
+            color: var(--accent-color);
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .profile-bio {
+            color: #ccc;
+            line-height: 1.8;
+            font-size: 1.05rem;
+            margin-bottom: 1.5rem;
+        }
+
+        /* スキルバッジ */
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+        }
+
+        .skill-badge {
+            background-color: #252525;
+            color: #e0e0e0;
+            padding: 0.4rem 1rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            border: 1px solid #333;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .skill-badge i {
+            color: var(--accent-color);
+        }
+
+        .skill-badge:hover {
+            border-color: var(--accent-color);
+            background-color: #2a2a2a;
+            transform: translateY(-2px);
+        }
+
+        /* サブセクション */
+        .about-section-title {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .about-section-title::before {
+            content: '';
+            display: block;
+            width: 4px;
+            height: 24px;
+            background-color: var(--accent-color);
+            border-radius: 2px;
+        }
+
+        .content-block {
+            line-height: 1.8;
+            color: #d0d0d0;
+            margin-bottom: 3rem;
+        }
+
+        /* レスポンシブ調整 */
+        @media (max-width: 768px) {
+            .profile-hero {
+                flex-direction: column;
+                text-align: center;
+                padding: 2rem;
+                gap: 1.5rem;
+            }
+
+            .profile-avatar-lg {
+                width: 140px;
+                height: 140px;
+            }
+
+            .skill-tags {
+                justify-content: center;
+            }
+
+            .about-header h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="container-fluid">
+        <div class="row">
+
+            <!-- Left Sidebar (Same as before) -->
+            <nav class="col-lg-3 col-xl-2 sidebar">
+                <div class="mb-lg-4">
+                    <!-- Profile Image (PC View) -->
+                    <div class="profile-section mb-3 d-none d-lg-block pc-view">
+                        <img src="https://github.com/shima10-x1p.png" class="rounded-circle" alt="Profile"
+                            style="width: 80px; height: 80px; object-fit: cover; border: 2px solid var(--accent-color);">
+                    </div>
+
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="d-flex align-items-center gap-3">
+                            <!-- Mobile Profile Image -->
+                            <img src="https://github.com/shima10-x1p.png" class="rounded-circle d-lg-none" alt="Profile"
+                                style="width: 40px; height: 40px; border: 1px solid var(--accent-color);">
+
+                            <div>
+                                <h1 class="blog-title"><a href="/">夏島諸島</a></h1>
+                                <p class="blog-subtitle d-lg-block mb-0">Python, Web, and Life.</p>
+                            </div>
+                        </div>
+                        <button class="sidebar-toggler d-lg-none" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#sidebarCollapse">
+                            <i class="fas fa-bars"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="collapse d-lg-block sidebar-collapse-content" id="sidebarCollapse">
+                    <div class="sidebar-content-wrapper">
+                        <div>
+                            <div class="sidebar-nav-container d-flex flex-column gap-2">
+                                <a href="/" class="nav-link"><i class="fas fa-home fa-fw"></i> Home</a>
+                                <a href="/pages/about.html" class="nav-link active"><i
+                                        class="fas fa-user-circle fa-fw"></i> About</a>
+                                <a href="/pages/contact.html" class="nav-link"><i class="fas fa-envelope fa-fw"></i>
+                                    Contact</a>
+                            </div>
+                        </div>
+                        <div class="mt-4 pt-4 pt-lg-0">
+                            <p class="text-muted small mb-0">&copy; 2025 しま（shima10-x1p）.</p>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+
+            <!-- Right Main Content (Redesigned About Page) -->
+            <main class="col-lg-9 col-xl-10 main-content container">
+
+                <article class="article-detail">
+
+                    <!-- Header -->
+                    <header class="about-header">
+                        <h1>About Me</h1>
+                        <span class="text-muted d-none d-md-block">Welcome to my portfolio</span>
+                    </header>
+
+                    <!-- Hero Profile Card -->
+                    <div class="profile-hero">
+                        <img src="https://github.com/shima10-x1p.png" alt="shima10-x1p" class="profile-avatar-lg">
+                        <div class="profile-info">
+                            <h2>しま (shima10-x1p)</h2>
+                            <span class="profile-role">Python Engineer / Web Developer</span>
+                            <p class="profile-bio">
+                                PythonとWeb開発が好きなエンジニアです。Pelicanを使った静的サイト生成や、モダンなWeb技術に興味があります。<br>
+                                このブログ「夏島諸島」では、開発中の技術メモや、日々の気づき、趣味のプロジェクトについて共有していきます。
+                            </p>
+
+                            <!-- Skills Badges (Mock) -->
+                            <div class="skill-tags">
+                                <span class="skill-badge"><i class="fab fa-python"></i> Python</span>
+                                <span class="skill-badge"><i class="fab fa-js"></i> JavaScript</span>
+                                <span class="skill-badge"><i class="fas fa-database"></i> SQL</span>
+                                <span class="skill-badge"><i class="fab fa-docker"></i> Docker</span>
+                                <span class="skill-badge"><i class="fas fa-feather-alt"></i> Pelican</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Additional Content (Example of clean typography) -->
+                    <div class="content-block">
+                        <h3 class="about-section-title">Background</h3>
+                        <p>
+                            元々はインフラエンジニアとしてキャリアをスタートしましたが、自動化ツールの作成をきっかけにプログラミングの面白さに目覚めました。
+                            現在はWebアプリケーションのバックエンド開発を中心に、フロントエンド技術も習得中です。
+                        </p>
+                        <p>
+                            シンプルで効率的なコードを書くこと、そして「車輪の再発明」を恐れずに仕組みを理解することを大切にしています。
+                        </p>
+                    </div>
+
+                    <div class="content-block">
+                        <h3 class="about-section-title">Connect</h3>
+                        <div class="d-flex gap-3">
+                            <a href="#" class="btn btn-outline-accent">
+                                <i class="fab fa-github me-2"></i> GitHub
+                            </a>
+                            <a href="#" class="btn btn-outline-accent">
+                                <i class="fab fa-twitter me-2"></i> Twitter
+                            </a>
+                        </div>
+                    </div>
+
+                </article>
+
+            </main>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

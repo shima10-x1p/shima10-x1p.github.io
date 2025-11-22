@@ -1,0 +1,8 @@
+{% extends "index.html" %}
+
+{% block title %}Tag: {{ tag }} - {{ SITENAME }}{% endblock %}
+
+{% block content %}
+<h1 class="mb-4">Tag: {{ tag }}</h1>
+{{ super() }}
+{% endblock %}

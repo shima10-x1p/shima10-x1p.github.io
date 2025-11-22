@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+
+{% block content %}
+<article class="article-detail">
+
+    <!-- Header -->
+    <header class="about-header">
+        <h1>{{ page.title }}</h1>
+        <span class="text-muted d-none d-md-block">Welcome to my portfolio</span>
+    </header>
+
+    <!-- Hero Profile Card -->
+    <div class="profile-hero">
+        {% if page.avatar %}
+        <img src="{{ page.avatar }}" alt="{{ page.title }}" class="profile-avatar-lg">
+        {% endif %}
+        <div class="profile-info">
+            <h2>{{ AUTHOR }}</h2>
+            {% if page.role %}
+            <span class="profile-role">{{ page.role }}</span>
+            {% endif %}
+
+            {% if page.bio %}
+            <p class="profile-bio">
+                {{ page.bio }}
+            </p>
+            {% endif %}
+
+            <!-- Skills Badges -->
+            {% if page.skills %}
+            <div class="skill-tags">
+                {% for skill in page.skills.split(',') %}
+                <span class="skill-badge">
+                    {% if 'Python' in skill %}<i class="fab fa-python"></i>
+                    {% elif 'JavaScript' in skill %}<i class="fab fa-js"></i>
+                    {% elif 'SQL' in skill %}<i class="fas fa-database"></i>
+                    {% elif 'Docker' in skill %}<i class="fab fa-docker"></i>
+                    {% elif 'Pelican' in skill %}<i class="fas fa-feather-alt"></i>
+                    {% else %}<i class="fas fa-code"></i>{% endif %}
+                    {{ skill.strip() }}
+                </span>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Main Content (Background) -->
+    <div class="content-block">
+        {{ page.content }}
+    </div>
+
+    <!-- Connect Section -->
+    <div class="content-block">
+        <h3 class="about-section-title">Connect</h3>
+        <div class="d-flex gap-3">
+            {% if SOCIAL %}
+            {% for name, link in SOCIAL %}
+            <a href="{{ link }}" class="btn btn-outline-accent" target="_blank">
+                {% if 'GitHub' in name %}<i class="fab fa-github me-2"></i>
+                {% elif 'Twitter' in name or 'X' in name %}<i class="fab fa-twitter me-2"></i>
+                {% elif 'LinkedIn' in name %}<i class="fab fa-linkedin me-2"></i>
+                {% else %}<i class="fas fa-link me-2"></i>{% endif %}
+                {{ name }}
+            </a>
+            {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+
+</article>
+{% endblock %}

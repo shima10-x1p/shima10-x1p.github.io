@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="{{ DEFAULT_LANG }}" data-bs-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{{ SITENAME }}{% endblock %}</title>
+    <!-- Bootstrap 5.3 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome (Icons) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts (Noto Sans JP & Roboto Mono) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Roboto+Mono:wght@400;700&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="{{ SITEURL }}/theme/css/style.css">
+
+    {% if FEED_ALL_ATOM %}
+    <link
+        href="{{ FEED_DOMAIN }}/{% if FEED_ALL_ATOM_URL %}{{ FEED_ALL_ATOM_URL }}{% else %}{{ FEED_ALL_ATOM }}{% endif %}"
+        type="application/atom+xml" rel="alternate" title="{{ SITENAME }} Atom Feed" />
+    {% endif %}
+    {% if FEED_ALL_RSS %}
+    <link
+        href="{{ FEED_DOMAIN }}/{% if FEED_ALL_RSS_URL %}{{ FEED_ALL_RSS_URL }}{% else %}{{ FEED_ALL_RSS }}{% endif %}"
+        type="application/rss+xml" rel="alternate" title="{{ SITENAME }} RSS Feed" />
+    {% endif %}
+</head>
+
+<body>
+
+    <div class="container-fluid">
+        <div class="row">
+
+            <!-- Left Sidebar Navigation -->
+            <nav class="col-lg-3 col-xl-2 sidebar">
+
+                <!-- Header Section -->
+                <div class="mb-lg-4">
+                    <!-- Profile Image (PC View: Top) -->
+                    <div class="profile-section mb-3 d-none d-lg-block">
+                        <img src="https://github.com/shima10-x1p.png" class="rounded-circle" alt="Profile">
+                    </div>
+
+                    <!-- Title & Toggler Row -->
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="d-flex align-items-center gap-3">
+                            <!-- Mobile Profile Image (Small, Left of Title) -->
+                            <img src="https://github.com/shima10-x1p.png" class="rounded-circle d-lg-none" alt="Profile"
+                                style="width: 40px; height: 40px; border: 1px solid var(--accent-color);">
+
+                            <div>
+                                <h1 class="blog-title"><a href="{{ SITEURL }}/">{{ SITENAME }}</a></h1>
+                                <p class="blog-subtitle d-lg-block mb-0">{{ SITESUBTITLE|default('Python, Web, and
+                                    Life.') }}</p>
+                            </div>
+                        </div>
+
+                        <!-- Mobile Toggler Button -->
+                        <button class="sidebar-toggler d-lg-none" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#sidebarCollapse" aria-controls="sidebarCollapse" aria-expanded="false"
+                            aria-label="Toggle navigation">
+                            <i class="fas fa-bars"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Collapsible Content (Always visible on Desktop .d-lg-block) -->
+                <div class="collapse d-lg-block sidebar-collapse-content" id="sidebarCollapse">
+                    <div class="sidebar-content-wrapper">
+
+                        <!-- Top Section: Nav Links (Profile image moved out from here) -->
+                        <div>
+                            <div class="sidebar-nav-container d-flex flex-column gap-2">
+                                <a href="{{ SITEURL }}/"
+                                    class="nav-link {% if output_file == 'index.html' %}active{% endif %}">
+                                    <i class="fas fa-home fa-fw"></i> Home
+                                </a>
+                                <!-- Pages -->
+                                {% for p in pages %}
+                                <a href="{{ SITEURL }}/{{ p.url }}"
+                                    class="nav-link {% if output_file == p.url %}active{% endif %}">
+                                    <i class="fas fa-file-alt fa-fw"></i> {{ p.title }}
+                                </a>
+                                {% endfor %}
+
+                                <!-- <a href="{{ SITEURL }}/archives.html"
+                                    class="nav-link {% if output_file == 'archives.html' %}active{% endif %}">
+                                    <i class="fas fa-archive fa-fw"></i> Archives
+                                </a>
+                                <a href="{{ SITEURL }}/categories.html"
+                                    class="nav-link {% if output_file == 'categories.html' %}active{% endif %}">
+                                    <i class="fas fa-tags fa-fw"></i> Categories
+                                </a> -->
+                            </div>
+                        </div>
+
+                        <!-- Bottom Section: Social & Copyright -->
+                        <div class="mt-4 pt-4 pt-lg-0">
+                            <div class="social-links mb-3">
+                                {% for name, link in SOCIAL or [] %}
+                                <a href="{{ link }}" target="_blank"><i class="fab fa-{{ name|lower }}"></i></a>
+                                {% endfor %}
+                                {% if FEED_ALL_ATOM %}
+                                <a href="{{ FEED_DOMAIN }}/{% if FEED_ALL_ATOM_URL %}{{ FEED_ALL_ATOM_URL }}{% else %}{{ FEED_ALL_ATOM }}{% endif %}"
+                                    rel="alternate"><i class="fas fa-rss"></i></a>
+                                {% endif %}
+                            </div>
+                            <p class="text-muted small mb-0">&copy; {{ CURRENT_YEAR|default(2025) }} {{ AUTHOR }}.</p>
+                        </div>
+
+                    </div>
+                </div>
+            </nav>
+
+            <!-- Right Main Content -->
+            <main class="col-lg-9 col-xl-10 main-content container">
+                {% block content %}
+                {% endblock %}
+            </main>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

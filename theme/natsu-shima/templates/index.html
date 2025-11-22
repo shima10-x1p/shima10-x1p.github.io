@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="index-content">
+    <div class="index-article-list">
+        {% for article in articles_page.object_list %}
+        <article class="index-article-card">
+            <div class="index-article-meta">
+                <span><i class="far fa-calendar-alt"></i> {{ article.date|strftime('%Y-%m-%d') }}</span>
+                {% if article.category %}
+                <span><i class="fas fa-tag"></i> {{ article.category }}</span>
+                {% endif %}
+            </div>
+            <h2 class="index-article-title">
+                <a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a>
+            </h2>
+            <div class="index-article-summary">
+                {{ article.summary }}
+            </div>
+            <div class="d-flex justify-content-between align-items-center mt-3">
+                <div class="tags">
+                    {% for tag in article.tags %}
+                    <a href="{{ SITEURL }}/{{ tag.url }}" class="tag-badge">#{{ tag }}</a>
+                    {% endfor %}
+                </div>
+            </div>
+        </article>
+        {% endfor %}
+    </div>
+</div>
+
+<!-- Pagination -->
+{% if articles_page.has_other_pages %}
+<nav aria-label="Page navigation" class="mt-5">
+    <ul class="pagination justify-content-center">
+        {% if articles_page.has_previous() %}
+        <li class="page-item">
+            <a class="page-link" href="{{ SITEURL }}/{{ articles_page.previous_page_number() }}.html"
+                tabindex="-1">Previous</a>
+        </li>
+        {% else %}
+        <li class="page-item disabled">
+            <a class="page-link" href="#" tabindex="-1">Previous</a>
+        </li>
+        {% endif %}
+
+        {% for num in articles_page.paginator.page_range %}
+        {% if num == articles_page.number %}
+        <li class="page-item active"><a class="page-link" href="#">{{ num }}</a></li>
+        {% else %}
+        <li class="page-item"><a class="page-link" href="{{ SITEURL }}/{{ num }}.html">{{ num }}</a></li>
+        {% endif %}
+        {% endfor %}
+
+        {% if articles_page.has_next() %}
+        <li class="page-item">
+            <a class="page-link" href="{{ SITEURL }}/{{ articles_page.next_page_number() }}.html">Next</a>
+        </li>
+        {% else %}
+        <li class="page-item disabled">
+            <a class="page-link" href="#">Next</a>
+        </li>
+        {% endif %}
+    </ul>
+</nav>
+{% endif %}
+{% endblock %}

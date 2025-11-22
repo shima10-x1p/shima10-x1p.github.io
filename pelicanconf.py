@@ -1,5 +1,5 @@
-AUTHOR = 'しま(shima10-x1p)'
-SITENAME = '月のうらがわ'
+AUTHOR = 'しま（shima10-x1p）'
+SITENAME = '夏島諸島'
 SITEURL = ""
 
 PATH = "content"
@@ -24,6 +24,7 @@ LINKS = (
 )
 
 # Social widget
+# Social widget
 SOCIAL = (
     ("GitHub", "https://github.com/shima10-x1p"),
     ("Twitter", "https://twitter.com/shima10_x1p"),
@@ -33,10 +34,30 @@ DEFAULT_PAGINATION = 10
 
 # Uncomment following line if you want document-relative URLs when developing
 # RELATIVE_URLS = True
-STATIC_PATHS = ["images", "extra/CNAME"]
-EXTRA_PATH_METADATA = {"extra/CNAME": {"path": "CNAME"}}
+# STATIC_PATHS
+STATIC_PATHS = ["extra/CNAME"]
 
-# Use custom template overrides (kept minimal, Bootstrap 5 based)
-# This points Pelican to look for templates in themes/moon/template first,
-# falling back to the active theme (or the built-in simple theme) when missing.
-THEME = "themes/moon"
+EXTRA_PATH_METADATA = {
+    "extra/CNAME": {"path": "CNAME"},
+}
+
+THEME = 'theme/natsu-shima'
+
+AUTHOR_BIO = {
+    "しま（shima10-x1p）": "PythonとWeb開発が好きなエンジニアです。Pelicanでブログを書いています。"
+}
+
+# Content paths
+ARTICLE_PATHS = ['articles']
+PAGE_PATHS = ['pages']
+
+# URL settings
+ARTICLE_URL = 'articles/{date:%Y}/{date:%m}/{slug}.html'
+ARTICLE_SAVE_AS = 'articles/{date:%Y}/{date:%m}/{slug}.html'
+PAGE_URL = 'pages/{slug}.html'
+PAGE_SAVE_AS = 'pages/{slug}.html'
+
+# Disable Author pages
+AUTHOR_SAVE_AS = ''
+AUTHORS_SAVE_AS = ''
+AUTHOR_URL = ''
