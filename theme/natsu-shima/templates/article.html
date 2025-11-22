@@ -3,16 +3,14 @@
 {% block title %}{{ article.title }} - {{ SITENAME }}{% endblock %}
 
 {% block content %}
-<article class="article-card">
+<article class="article-detail">
     <div class="article-meta">
         <span><i class="far fa-calendar-alt"></i> {{ article.date|strftime('%Y-%m-%d') }}</span>
         {% if article.category %}
-        <span><i class="far fa-folder"></i> <a href="{{ SITEURL }}/{{ article.category.url }}">{{ article.category
-                }}</a></span>
+        <span><i class="fas fa-tag"></i> {{ article.category }}</span>
         {% endif %}
         {% if article.author %}
-        <span><i class="fas fa-user"></i> <a href="{{ SITEURL }}/{{ article.author.url }}">{{ article.author
-                }}</a></span>
+        <span><i class="fas fa-user"></i> {{ article.author }}</span>
         {% endif %}
     </div>
     <h1 class="article-title" style="font-size: 2.5rem; margin-bottom: 1.5rem;">
@@ -25,12 +23,18 @@
 
     <hr style="border-color: #333; margin: 3rem 0;">
 
-    <div class="d-flex justify-content-between align-items-center">
+    <div class="d-flex justify-content-between align-items-center mb-5">
         <div class="tags">
             {% for tag in article.tags %}
             <a href="{{ SITEURL }}/{{ tag.url }}" class="tag-badge">#{{ tag }}</a>
             {% endfor %}
         </div>
+    </div>
+
+    <div class="text-center">
+        <a href="{{ SITEURL }}/" class="btn go-back-top">
+            Go Back Top
+        </a>
     </div>
 </article>
 {% endblock %}

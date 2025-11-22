@@ -6,7 +6,7 @@ PATH = "content"
 
 TIMEZONE = 'Asia/Tokyo'
 
-DEFAULT_LANG = 'Japanese'
+DEFAULT_LANG = 'ja'
 
 # Feed generation is usually not desired when developing
 FEED_ALL_ATOM = None
@@ -24,9 +24,10 @@ LINKS = (
 )
 
 # Social widget
+# Social widget
 SOCIAL = (
-    ("You can add links in your config file", "#"),
-    ("Another social link", "#"),
+    ("GitHub", "https://github.com/shima10-x1p"),
+    ("Twitter", "https://twitter.com/shima10_x1p"),
 )
 
 DEFAULT_PAGINATION = 10
@@ -45,3 +46,18 @@ THEME = 'theme/natsu-shima'
 AUTHOR_BIO = {
     "しま（shima10-x1p）": "PythonとWeb開発が好きなエンジニアです。Pelicanでブログを書いています。"
 }
+
+# Content paths
+ARTICLE_PATHS = ['articles']
+PAGE_PATHS = ['pages']
+
+# URL settings
+ARTICLE_URL = 'articles/{date:%Y}/{date:%m}/{slug}.html'
+ARTICLE_SAVE_AS = 'articles/{date:%Y}/{date:%m}/{slug}.html'
+PAGE_URL = 'pages/{slug}.html'
+PAGE_SAVE_AS = 'pages/{slug}.html'
+
+# Disable Author pages
+AUTHOR_SAVE_AS = ''
+AUTHORS_SAVE_AS = ''
+AUTHOR_URL = ''

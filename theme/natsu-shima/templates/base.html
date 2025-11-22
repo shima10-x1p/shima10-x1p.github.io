@@ -87,14 +87,14 @@
                                 </a>
                                 {% endfor %}
 
-                                <a href="{{ SITEURL }}/archives.html"
+                                <!-- <a href="{{ SITEURL }}/archives.html"
                                     class="nav-link {% if output_file == 'archives.html' %}active{% endif %}">
                                     <i class="fas fa-archive fa-fw"></i> Archives
                                 </a>
                                 <a href="{{ SITEURL }}/categories.html"
                                     class="nav-link {% if output_file == 'categories.html' %}active{% endif %}">
                                     <i class="fas fa-tags fa-fw"></i> Categories
-                                </a>
+                                </a> -->
                             </div>
                         </div>
 
@@ -117,7 +117,7 @@
             </nav>
 
             <!-- Right Main Content -->
-            <main class="col-lg-9 col-xl-10 main-content">
+            <main class="col-lg-9 col-xl-10 main-content container">
                 {% block content %}
                 {% endblock %}
             </main>
