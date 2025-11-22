@@ -1,6 +1,7 @@
-Title: 最初の投稿
-Date: 2025-11-22 10:00
-Category: misc
-Slug: first-post
+Title: リニューアル
+Date: 2025-11-22 22:21
+Category: general
+Slug: renewal
 
-ここから新しい Pelican サイトのテストです。
+Python と Pelican で作っていたこのページをリニューアルしました。
+きっかけは、Gemini 3 Pro がいい感じというのと、Antigravity のお試しをしてみたかったのが主です。
