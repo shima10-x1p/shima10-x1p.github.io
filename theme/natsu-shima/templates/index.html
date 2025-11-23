@@ -5,23 +5,25 @@
     <div class="index-article-list">
         {% for article in articles_page.object_list %}
         <article class="index-article-card">
-            <div class="index-article-meta">
-                <span><i class="far fa-calendar-alt"></i> {{ article.date|strftime('%Y-%m-%d') }}</span>
-                {% if article.category %}
-                <span><i class="fas fa-tag"></i> {{ article.category }}</span>
-                {% endif %}
-            </div>
-            <h2 class="index-article-title">
-                <a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a>
-            </h2>
-            <div class="index-article-summary">
-                {{ article.summary }}
-            </div>
-            <div class="d-flex justify-content-between align-items-center mt-3">
-                <div class="tags">
-                    {% for tag in article.tags %}
-                    <a href="{{ SITEURL }}/{{ tag.url }}" class="tag-badge">#{{ tag }}</a>
-                    {% endfor %}
+            <div class="index-article-content-wrapper">
+                <div class="index-article-meta">
+                    <span><i class="far fa-calendar-alt"></i> {{ article.date|strftime('%Y-%m-%d') }}</span>
+                    {% if article.category %}
+                    <span><i class="fas fa-tag"></i> {{ article.category }}</span>
+                    {% endif %}
+                </div>
+                <h2 class="index-article-title">
+                    <a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a>
+                </h2>
+                <div class="index-article-summary">
+                    {{ article.summary|striptags|truncate(100) }}
+                </div>
+                <div class="d-flex justify-content-between align-items-center mt-auto">
+                    <div class="tags">
+                        {% for tag in article.tags %}
+                        <a href="{{ SITEURL }}/{{ tag.url }}" class="tag-badge">#{{ tag }}</a>
+                        {% endfor %}
+                    </div>
                 </div>
             </div>
         </article>
