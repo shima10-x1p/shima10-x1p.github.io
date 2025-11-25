@@ -74,15 +74,17 @@ a:hover {
 
 /* --- Sidebar Styling --- */
 .sidebar {
-    background-color: var(--sidebar-bg);
-    border-right: 1px solid var(--border-color);
+    background-color: rgba(24, 24, 24, 0.75);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-right: 1px solid rgba(255, 255, 255, 0.08);
     min-height: 100vh;
     padding: 2rem;
     position: sticky;
     top: 0;
     display: flex;
     flex-direction: column;
-    /* justify-content: space-between;  Mobile layout change affects this */
+    z-index: 1000;
 }
 
 /* Flex column layout for PC default */
@@ -148,13 +150,16 @@ a:hover {
 }
 
 .article-card {
-    background-color: var(--card-bg);
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
+    background-color: rgba(30, 30, 30, 0.6);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
     padding: 2rem;
     margin-bottom: 2rem;
-    transition: transform 0.2s, border-color 0.2s;
+    transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
     position: relative;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 /* .article-card:hover {
@@ -249,202 +254,7 @@ a:hover {
         min-height: auto;
         position: relative;
         border-right: none;
-        border-bottom: 1px solid var(--border-color);
-        padding: 1rem 1.5rem;
-        display: block;
-        /* Reset flex */
-    }
-
-    .blog-subtitle {
-        margin-bottom: 0;
-        /* スマホではサブタイトル下の余白を詰める */
-    }
-
-    .main-content {
-        padding: 2rem 1rem;
-    }
-
-    .sidebar-collapse-content {
-        margin-top: 1.5rem;
-        padding-top: 1rem;
-        border-top: 1px solid #333;
-    }
-
-    .sidebar-content-wrapper {
-        height: auto;
-        display: block;
-    }
-}
-
-/* --- Article Grid Layout --- */
-.article-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
-}
-
-.article-grid .article-card {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    margin-bottom: 0;
-}
-
-.article-grid .article-summary {
-    flex-grow: 1;
-}
-
-/* Responsive Grid Adjustments */
-@media (max-width: 1199.98px) {
-
-    /* Medium screens: 2 columns */
-    .article-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media (max-width: 767.98px) {
-
-    /* Mobile screens: 1 column */
-    .article-grid {
-        grid-template-columns: 1fr;
-    }
-}
-
-/* Clickable Card Pattern */
-.article-title a::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-}
-
-/* Ensure tags are clickable on top of the card link */
-.tags {
-    position: relative;
-    z-index: 2;
-}
-
-/* --- Article Detail Page --- */
-.article-detail {
-    background-color: transparent;
-    padding: 0;
-    margin-bottom: 2rem;
-    border: none;
-    max-width: 900px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-/* 記事詳細の中身に余白を持たせる */
-.article-detail .article-content,
-.article-detail .article-title,
-.article-detail .article-meta {
-    /* 必要に応じてパディング調整 */
-}
-
-/* Go Back Top Button */
-.go-back-top {
-    border-color: #555;
-    color: #aaa;
-}
-
-/* .article-card:hover {
-    border-color: var(--accent-color);
-    transform: translateY(-2px);
-} */
-
-.article-meta {
-    font-family: 'Roboto Mono', monospace;
-    font-size: 0.85rem;
-    color: #888;
-    margin-bottom: 0.8rem;
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-}
-
-.article-meta i {
-    color: var(--accent-color);
-    margin-right: 5px;
-}
-
-.article-title {
-    font-size: 1.75rem;
-    margin-bottom: 1rem;
-    line-height: 1.4;
-}
-
-.article-title a {
-    color: #fff;
-}
-
-.article-title a:hover {
-    color: var(--accent-color);
-}
-
-.article-summary {
-    color: #ccc;
-    line-height: 1.7;
-    margin-bottom: 1.5rem;
-}
-
-.tag-badge {
-    background-color: #2d2d2d;
-    color: #aaa;
-    font-size: 0.75rem;
-    padding: 4px 8px;
-    border-radius: 4px;
-    margin-right: 5px;
-    transition: all 0.2s;
-}
-
-.tag-badge:hover {
-    background-color: var(--accent-color);
-    color: #fff;
-}
-
-/* --- Pagination --- */
-.pagination .page-link {
-    background-color: var(--card-bg);
-    border-color: var(--border-color);
-    color: #fff;
-}
-
-.pagination .page-link:hover {
-    background-color: #333;
-    border-color: var(--border-color);
-    color: var(--accent-color);
-}
-
-.pagination .active>.page-link {
-    background-color: var(--accent-color);
-    border-color: var(--accent-color);
-}
-
-/* --- Mobile Toggler Style --- */
-.sidebar-toggler {
-    border: 1px solid var(--border-color);
-    color: #fff;
-    padding: 0.5rem 0.75rem;
-    border-radius: 4px;
-    background: transparent;
-}
-
-.sidebar-toggler:focus {
-    box-shadow: 0 0 0 0.25rem rgba(228, 63, 59, 0.25);
-}
-
-/* --- Responsive Adjustments --- */
-@media (max-width: 991.98px) {
-    .sidebar {
-        min-height: auto;
-        position: relative;
-        border-right: none;
-        border-bottom: 1px solid var(--border-color);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
         padding: 1rem 1.5rem;
         display: block;
         /* Reset flex */
@@ -588,14 +398,17 @@ a:hover {
 
 /* プロフィールカード */
 .profile-hero {
-    background-color: var(--card-bg);
-    border: 1px solid var(--border-color);
-    border-radius: 12px;
+    background-color: rgba(30, 30, 30, 0.6);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
     padding: 3rem;
     margin-bottom: 3rem;
     display: flex;
     gap: 3rem;
     align-items: center;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
 }
 
 .profile-avatar-lg {
@@ -702,9 +515,11 @@ a:hover {
 }
 
 .index-article-card {
-    background-color: var(--card-bg);
-    border: 1px solid var(--border-color);
-    border-radius: 12px;
+    background-color: rgba(30, 30, 30, 0.6);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
     padding: 1.5rem;
     transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
     display: flex;
@@ -712,6 +527,7 @@ a:hover {
     height: 100%;
     position: relative;
     overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
 .index-article-card:hover {
