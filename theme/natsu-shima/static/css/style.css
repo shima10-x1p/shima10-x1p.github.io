@@ -1,17 +1,18 @@
 :root {
-    --bs-body-bg: #121212;
-    /* より深いダークグレー */
-    --bs-body-color: #e0e0e0;
+    --bs-body-bg: #f0f2f5;
+    /* 明るいグレー/白 */
+    --bs-body-color: #222222;
     --accent-color: #E43F3B;
     --accent-hover: #c03531;
-    --card-bg: #1e1e1e;
-    --sidebar-bg: #181818;
-    --border-color: #333;
+    --card-bg: rgba(255, 255, 255, 0.6);
+    --sidebar-bg: rgba(255, 255, 255, 0.7);
+    --border-color: rgba(0, 0, 0, 0.1);
 }
 
 body {
     font-family: 'Noto Sans JP', sans-serif;
     background-color: var(--bs-body-bg);
+    color: var(--bs-body-color);
 }
 
 h1,
@@ -21,7 +22,7 @@ h4,
 h5,
 h6 {
     font-weight: 700;
-    color: #ffffff;
+    color: #222222;
 }
 
 a {
@@ -75,14 +76,16 @@ a:hover {
 /* --- Sidebar Styling --- */
 .sidebar {
     background-color: var(--sidebar-bg);
-    border-right: 1px solid var(--border-color);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-right: 1px solid rgba(255, 255, 255, 0.4);
     min-height: 100vh;
     padding: 2rem;
     position: sticky;
     top: 0;
     display: flex;
     flex-direction: column;
-    /* justify-content: space-between;  Mobile layout change affects this */
+    z-index: 1000;
 }
 
 /* Flex column layout for PC default */
@@ -101,12 +104,12 @@ a:hover {
 
 .blog-subtitle {
     font-size: 0.9rem;
-    color: #888;
+    color: #666;
     margin-bottom: 2rem;
 }
 
 .nav-link {
-    color: #aaa;
+    color: #555;
     padding: 0.5rem 0;
     font-size: 1.1rem;
     display: flex;
@@ -135,7 +138,7 @@ a:hover {
 .social-links a {
     font-size: 1.2rem;
     margin-right: 1rem;
-    color: #888;
+    color: #666;
 }
 
 .social-links a:hover {
@@ -149,12 +152,15 @@ a:hover {
 
 .article-card {
     background-color: var(--card-bg);
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 12px;
     padding: 2rem;
     margin-bottom: 2rem;
-    transition: transform 0.2s, border-color 0.2s;
+    transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
     position: relative;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
 }
 
 /* .article-card:hover {
@@ -165,7 +171,7 @@ a:hover {
 .article-meta {
     font-family: 'Roboto Mono', monospace;
     font-size: 0.85rem;
-    color: #888;
+    color: #666;
     margin-bottom: 0.8rem;
     display: flex;
     gap: 1rem;
@@ -184,7 +190,7 @@ a:hover {
 }
 
 .article-title a {
-    color: #fff;
+    color: #222;
 }
 
 .article-title a:hover {
@@ -192,14 +198,14 @@ a:hover {
 }
 
 .article-summary {
-    color: #ccc;
+    color: #333;
     line-height: 1.7;
     margin-bottom: 1.5rem;
 }
 
 .tag-badge {
-    background-color: #2d2d2d;
-    color: #aaa;
+    background-color: rgba(0, 0, 0, 0.05);
+    color: #555;
     font-size: 0.75rem;
     padding: 4px 8px;
     border-radius: 4px;
@@ -216,11 +222,11 @@ a:hover {
 .pagination .page-link {
     background-color: var(--card-bg);
     border-color: var(--border-color);
-    color: #fff;
+    color: #333;
 }
 
 .pagination .page-link:hover {
-    background-color: #333;
+    background-color: #e9ecef;
     border-color: var(--border-color);
     color: var(--accent-color);
 }
@@ -233,7 +239,7 @@ a:hover {
 /* --- Mobile Toggler Style --- */
 .sidebar-toggler {
     border: 1px solid var(--border-color);
-    color: #fff;
+    color: #333;
     padding: 0.5rem 0.75rem;
     border-radius: 4px;
     background: transparent;
@@ -249,7 +255,7 @@ a:hover {
         min-height: auto;
         position: relative;
         border-right: none;
-        border-bottom: 1px solid var(--border-color);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
         padding: 1rem 1.5rem;
         display: block;
         /* Reset flex */
@@ -267,7 +273,7 @@ a:hover {
     .sidebar-collapse-content {
         margin-top: 1.5rem;
         padding-top: 1rem;
-        border-top: 1px solid #333;
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
     }
 
     .sidebar-content-wrapper {
@@ -346,205 +352,15 @@ a:hover {
     /* 必要に応じてパディング調整 */
 }
 
-/* Go Back Top Button */
-.go-back-top {
-    border-color: #555;
-    color: #aaa;
-}
-
-/* .article-card:hover {
-    border-color: var(--accent-color);
-    transform: translateY(-2px);
-} */
-
-.article-meta {
-    font-family: 'Roboto Mono', monospace;
-    font-size: 0.85rem;
-    color: #888;
-    margin-bottom: 0.8rem;
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-}
-
-.article-meta i {
-    color: var(--accent-color);
-    margin-right: 5px;
-}
-
-.article-title {
-    font-size: 1.75rem;
-    margin-bottom: 1rem;
-    line-height: 1.4;
-}
-
-.article-title a {
-    color: #fff;
-}
-
-.article-title a:hover {
-    color: var(--accent-color);
-}
-
-.article-summary {
-    color: #ccc;
-    line-height: 1.7;
-    margin-bottom: 1.5rem;
-}
-
-.tag-badge {
-    background-color: #2d2d2d;
-    color: #aaa;
-    font-size: 0.75rem;
-    padding: 4px 8px;
-    border-radius: 4px;
-    margin-right: 5px;
-    transition: all 0.2s;
-}
-
-.tag-badge:hover {
-    background-color: var(--accent-color);
-    color: #fff;
-}
-
-/* --- Pagination --- */
-.pagination .page-link {
-    background-color: var(--card-bg);
-    border-color: var(--border-color);
-    color: #fff;
-}
-
-.pagination .page-link:hover {
-    background-color: #333;
-    border-color: var(--border-color);
-    color: var(--accent-color);
-}
-
-.pagination .active>.page-link {
-    background-color: var(--accent-color);
-    border-color: var(--accent-color);
-}
-
-/* --- Mobile Toggler Style --- */
-.sidebar-toggler {
-    border: 1px solid var(--border-color);
-    color: #fff;
-    padding: 0.5rem 0.75rem;
-    border-radius: 4px;
-    background: transparent;
-}
-
-.sidebar-toggler:focus {
-    box-shadow: 0 0 0 0.25rem rgba(228, 63, 59, 0.25);
-}
-
-/* --- Responsive Adjustments --- */
-@media (max-width: 991.98px) {
-    .sidebar {
-        min-height: auto;
-        position: relative;
-        border-right: none;
-        border-bottom: 1px solid var(--border-color);
-        padding: 1rem 1.5rem;
-        display: block;
-        /* Reset flex */
-    }
-
-    .blog-subtitle {
-        margin-bottom: 0;
-        /* スマホではサブタイトル下の余白を詰める */
-    }
-
-    .main-content {
-        padding: 2rem 1rem;
-    }
-
-    .sidebar-collapse-content {
-        margin-top: 1.5rem;
-        padding-top: 1rem;
-        border-top: 1px solid #333;
-    }
-
-    .sidebar-content-wrapper {
-        height: auto;
-        display: block;
-    }
-}
-
-/* --- Article Grid Layout --- */
-.article-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
-}
-
-.article-grid .article-card {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    margin-bottom: 0;
-}
-
-.article-grid .article-summary {
-    flex-grow: 1;
-}
-
-/* Responsive Grid Adjustments */
-@media (max-width: 1199.98px) {
-
-    /* Medium screens: 2 columns */
-    .article-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media (max-width: 767.98px) {
-
-    /* Mobile screens: 1 column */
-    .article-grid {
-        grid-template-columns: 1fr;
-    }
-}
-
-/* Clickable Card Pattern */
-.article-title a::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-}
-
-/* Ensure tags are clickable on top of the card link */
-.tags {
-    position: relative;
-    z-index: 2;
-}
-
-/* --- Article Detail Page --- */
-.article-detail {
-    background-color: transparent;
-    padding: 0;
-    margin-bottom: 2rem;
-    border: none;
-    max-width: 900px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-/* 記事詳細の中身に余白を持たせる */
-.article-detail .article-content,
-.article-detail .article-title,
-.article-detail .article-meta {
-    /* 必要に応じてパディング調整 */
+.article-content {
+    color: #111;
+    line-height: 1.8;
 }
 
 /* Go Back Top Button */
 .go-back-top {
-    border-color: #555;
-    color: #aaa;
+    border-color: #ccc;
+    color: #666;
     padding: 0.75rem 2rem;
     border-radius: 50px;
     transition: all 0.3s ease;
@@ -553,7 +369,7 @@ a:hover {
 .go-back-top:hover {
     background-color: #333;
     color: #fff;
-    border-color: #fff;
+    border-color: #333;
 }
 
 /* =========================================
@@ -589,13 +405,16 @@ a:hover {
 /* プロフィールカード */
 .profile-hero {
     background-color: var(--card-bg);
-    border: 1px solid var(--border-color);
-    border-radius: 12px;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 16px;
     padding: 3rem;
     margin-bottom: 3rem;
     display: flex;
     gap: 3rem;
     align-items: center;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
 }
 
 .profile-avatar-lg {
@@ -604,7 +423,7 @@ a:hover {
     border-radius: 50%;
     object-fit: cover;
     border: 4px solid var(--accent-color);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
     flex-shrink: 0;
 }
 
@@ -622,7 +441,7 @@ a:hover {
 }
 
 .profile-bio {
-    color: #ccc;
+    color: #333;
     line-height: 1.8;
     font-size: 1.05rem;
     margin-bottom: 1.5rem;
@@ -636,12 +455,12 @@ a:hover {
 }
 
 .skill-badge {
-    background-color: #252525;
-    color: #e0e0e0;
+    background-color: rgba(0, 0, 0, 0.05);
+    color: #333;
     padding: 0.4rem 1rem;
     border-radius: 50px;
     font-size: 0.9rem;
-    border: 1px solid #333;
+    border: 1px solid rgba(0, 0, 0, 0.1);
     transition: all 0.2s;
     display: flex;
     align-items: center;
@@ -654,7 +473,7 @@ a:hover {
 
 .skill-badge:hover {
     border-color: var(--accent-color);
-    background-color: #2a2a2a;
+    background-color: #fff;
     transform: translateY(-2px);
 }
 
@@ -703,8 +522,10 @@ a:hover {
 
 .index-article-card {
     background-color: var(--card-bg);
-    border: 1px solid var(--border-color);
-    border-radius: 12px;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 16px;
     padding: 1.5rem;
     transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
     display: flex;
@@ -712,11 +533,12 @@ a:hover {
     height: 100%;
     position: relative;
     overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
 }
 
 .index-article-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
     border-color: var(--accent-color);
 }
 
@@ -729,7 +551,7 @@ a:hover {
 .index-article-meta {
     font-family: 'Roboto Mono', monospace;
     font-size: 0.8rem;
-    color: #888;
+    color: #666;
     margin-bottom: 1rem;
     display: flex;
     gap: 0.8rem;
@@ -748,7 +570,7 @@ a:hover {
 }
 
 .index-article-title a {
-    color: #fff;
+    color: #222;
     text-decoration: none;
     /* Remove underline animation for card title as the whole card is interactive */
     background: none;
@@ -765,7 +587,7 @@ a:hover {
 }
 
 .index-article-summary {
-    color: #ccc;
+    color: #333;
     line-height: 1.6;
     font-size: 0.95rem;
     margin-bottom: 1.5rem;
@@ -783,8 +605,8 @@ a:hover {
 }
 
 .tag-badge {
-    background-color: rgba(255, 255, 255, 0.05);
-    color: #aaa;
+    background-color: rgba(0, 0, 0, 0.05);
+    color: #555;
     font-size: 0.75rem;
     padding: 4px 10px;
     border-radius: 20px;
