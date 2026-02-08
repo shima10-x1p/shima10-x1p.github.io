@@ -1,7 +1,19 @@
 {% extends "base.html" %}
 
+{% set site_summary = "日々の記録と開発メモ" %}
+
 {% block title %}{{ SITENAME }}{% endblock title %}
-{% block page_description %}日々の記録と開発メモ{% endblock page_description %}
+{% block page_description %}{{ site_summary }}{% endblock page_description %}
+
+{% block extra_head %}
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="{{ SITENAME }}" />
+    <meta property="og:description" content="{{ site_summary }}" />
+    <meta property="og:url" content="{{ SITEURL }}/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="{{ SITENAME }}" />
+    <meta name="twitter:description" content="{{ site_summary }}" />
+{% endblock extra_head %}
 
 {% block content %}
 {% if articles_page and articles_page.object_list %}
@@ -15,11 +27,29 @@
 
 {% if article_list %}
     {% for article in article_list %}
+    {% set thumbnail_path = article | resolve_article_thumbnail %}
+    {% if thumbnail_path and (thumbnail_path.startswith("http://") or thumbnail_path.startswith("https://") or thumbnail_path.startswith("//")) %}
+        {% set thumbnail_src = thumbnail_path %}
+    {% elif thumbnail_path %}
+        {% set thumbnail_src = SITEURL ~ "/" ~ thumbnail_path %}
+    {% else %}
+        {% set thumbnail_src = none %}
+    {% endif %}
     <article class="blog-post">
         <a href="{{ SITEURL }}/{{ article.url }}" class="post-thumbnail">
+            {% if thumbnail_src %}
+            <img
+                src="{{ thumbnail_src }}"
+                alt="{{ article.title }}"
+                class="post-thumbnail-image"
+                loading="lazy"
+                decoding="async"
+            />
+            {% else %}
             <span class="post-thumbnail-visual">
                 <i data-lucide="image" size="58"></i>
             </span>
+            {% endif %}
         </a>
 
         <div class="post-content">

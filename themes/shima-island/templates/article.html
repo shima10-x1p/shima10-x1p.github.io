@@ -1,11 +1,49 @@
 {% extends "base.html" %}
 
+{% set article_summary = article.summary | default(article.content, true) | striptags | replace("\n", " ") | replace("\r", " ") | truncate(160) %}
+{% set thumbnail_path = article | resolve_article_thumbnail %}
+{% if thumbnail_path and (thumbnail_path.startswith("http://") or thumbnail_path.startswith("https://") or thumbnail_path.startswith("//")) %}
+    {% set thumbnail_src = thumbnail_path %}
+{% elif thumbnail_path %}
+    {% set thumbnail_src = SITEURL ~ "/" ~ thumbnail_path %}
+{% else %}
+    {% set thumbnail_src = none %}
+{% endif %}
+
 {% block title %}{{ article.title }} | {{ SITENAME }}{% endblock title %}
-{% block page_description %}{{ article.summary | striptags | truncate(120) }}{% endblock page_description %}
+{% block page_description %}{{ article_summary }}{% endblock page_description %}
 {% block layout_mode %}single{% endblock layout_mode %}
+
+{% block extra_head %}
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="{{ article.title }}" />
+    <meta property="og:description" content="{{ article_summary }}" />
+    <meta property="og:url" content="{{ SITEURL }}/{{ article.url }}" />
+    {% if thumbnail_src %}
+    <meta property="og:image" content="{{ thumbnail_src }}" />
+    {% endif %}
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="{{ article.title }}" />
+    <meta name="twitter:description" content="{{ article_summary }}" />
+    {% if thumbnail_src %}
+    <meta name="twitter:image" content="{{ thumbnail_src }}" />
+    {% endif %}
+{% endblock extra_head %}
 
 {% block content %}
 <article class="article-shell">
+    {% if thumbnail_src %}
+    <figure class="article-thumbnail-wrapper">
+        <img
+            src="{{ thumbnail_src }}"
+            alt="{{ article.title }}"
+            class="article-thumbnail"
+            loading="eager"
+            decoding="async"
+        />
+    </figure>
+    {% endif %}
+
     <header class="article-header">
         <div class="article-meta">
             <time datetime="{{ article.date.isoformat() }}">{{ article.locale_date }}</time>
@@ -16,6 +54,7 @@
         </div>
         <h1 class="article-title">{{ article.title }}</h1>
     </header>
+
 
     <section class="entry-content">
         {{ article.content }}

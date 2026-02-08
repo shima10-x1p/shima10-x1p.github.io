@@ -1,9 +1,10 @@
-Title: ホームページリニューアルの土台を作る
+Title: リニューアル
 Date: 2026-02-08 17:40
 Slug: homepage-renewal-bootstrap
 Category: Notes
-Summary: Python + Pelican で静的生成サイトへ移行するための最小構成を用意しました。
+Summary: リニューアルしました
 
-このページは、リニューアル作業の初期確認用に配置したサンプル記事です。
+またモチベーションがわいてきたので、ホームページをリニューアルしました。
+今回は pico.css を使ってシンプルに仕上げています。
 
-次の段階で、プロフィールや制作物、記事一覧などを順次追加します。
+![記事サンプル画像](/images/2026/02/homepage-renewal-bootstrap/PXL_20260207_130250110.RAW-01.MP.COVER.jpg)
