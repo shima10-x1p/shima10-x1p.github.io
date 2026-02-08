@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ja" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Takumi's Log</title>
+    <!-- 共通メタタグ・CSS・フォント -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        /* ここに共通CSS (index.htmlと同様のもの) が入ります */
+        :root {
+            --pico-font-family: 'Inter', 'Noto Sans JP', system-ui, sans-serif;
+            --pico-line-height: 1.7;
+            --pico-primary: #f97316;
+            --pico-border-radius: 1rem;
+            --pico-background-color: #fff7ed;
+        }
+        [data-theme="dark"] {
+            --pico-background-color: #1c1917;
+            --pico-primary: #fb923c;
+        }
+        body > header {
+            padding: 1rem 0;
+            margin-bottom: 3rem;
+            position: sticky; top: 0; z-index: 100;
+            background-color: color-mix(in srgb, var(--pico-card-background-color), transparent 10%);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--pico-muted-border-color);
+        }
+        .layout-grid { display: grid; gap: 3rem; }
+        @media (min-width: 992px) {
+            .layout-grid { grid-template-columns: 1fr 280px; align-items: start; }
+            aside { position: sticky; top: 8rem; }
+        }
+        /* ...その他の共通スタイル... */
+        .profile-card {
+            text-align: center; padding: 2rem;
+            background-color: var(--pico-card-background-color);
+            border-radius: var(--pico-border-radius);
+            border: 1px solid var(--pico-muted-border-color);
+        }
+        .profile-img {
+            width: 120px; height: 120px; border-radius: 50%; object-fit: cover;
+            border: 4px solid var(--pico-background-color);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header (共通) -->
+    <header>
+        <div class="container">
+            <nav>
+                <ul>
+                    <li><a href="index.html" class="contrast" style="font-weight: 800;">Takumi's Log</a></li>
+                </ul>
+                <ul>
+                    <li><a href="#" class="secondary">About</a></li>
+                    <li><a href="#" class="secondary">Works</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="layout-grid">
+            
+            <!-- Block Content (ここがページによって変わる部分) -->
+            <div id="content-placeholder">
+                <article style="padding: 2rem; text-align: center; border: 2px dashed var(--pico-muted-border-color); border-radius: var(--pico-border-radius); color: var(--pico-muted-color);">
+                    <h3>{% block content %}</h3>
+                    <p>ここに各ページ固有のコンテンツが入ります</p>
+                    <p>(一覧ページなら記事リスト、詳細ページなら記事本文)</p>
+                </article>
+            </div>
+            <!-- End Block Content -->
+
+            <!-- Sidebar (共通) -->
+            <aside>
+                <div class="profile-card">
+                    <img src="https://ui-avatars.com/api/?name=Takumi&background=f97316&color=fff&size=128" alt="Profile" class="profile-img">
+                    <h3 style="margin-bottom: 0.5rem; font-weight: 800;">Takumi</h3>
+                    <p style="font-size: 0.9rem; color: var(--pico-muted-color);">Web Developer / Photographer</p>
+                </div>
+            </aside>
+
+        </div>
+    </main>
+
+    <!-- Footer (共通) -->
+    <footer class="container" style="margin-top: 4rem; padding: 3rem 0; text-align: center; color: var(--pico-muted-color); font-size: 0.9rem;">
+        <p>&copy; 2024 Takumi's Log.</p>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+        /* テーマ切り替えスクリプト等 */
+    </script>
+</body>
+</html>
