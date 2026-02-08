@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="ja" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>記事タイトル - Takumi's Log</title>
+    
+    <!-- Pico.css v2 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <!-- Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        /* --- 共通スタイル (base.css) --- */
+        :root {
+            --pico-font-family: 'Inter', 'Noto Sans JP', system-ui, sans-serif;
+            --pico-line-height: 1.7;
+            --pico-primary: #f97316;
+            --pico-primary-background: #f97316;
+            --pico-primary-hover: #ea580c;
+            --pico-primary-underline: rgba(249, 115, 22, 0.4);
+            --pico-border-radius: 1rem;
+            --pico-background-color: #fff7ed;
+        }
+        [data-theme="dark"] {
+            --pico-background-color: #1c1917;
+            --pico-card-background-color: #292524;
+            --pico-primary: #fb923c;
+            --pico-primary-background: #fb923c;
+            --pico-primary-hover: #fdba74;
+            --pico-color: #e7e5e4;
+        }
+        body > header {
+            padding: 1rem 0;
+            background-color: var(--pico-card-background-color);
+            border-bottom: 1px solid var(--pico-muted-border-color);
+            margin-bottom: 3rem;
+            position: sticky; top: 0; z-index: 100;
+            backdrop-filter: blur(10px);
+            background-color: color-mix(in srgb, var(--pico-card-background-color), transparent 10%);
+        }
+
+        /* 記事ページ専用レイアウト: 1カラム中央寄せ */
+        .layout-single {
+            max-width: 720px; /* 読みやすい幅に制限 */
+            margin: 0 auto;
+        }
+
+        .theme-toggle { background: none; border: none; padding: 0.5rem; color: var(--pico-color); cursor: pointer; display: flex; align-items: center; justify-content: center; border-radius: 50%; }
+
+        /* --- 記事詳細専用スタイル (Typography) --- */
+        .article-header {
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+        .article-meta {
+            color: var(--pico-muted-color);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .article-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 2rem;
+            word-break: auto-phrase; /* 日本語の改行をきれいに */
+        }
+        .article-thumbnail {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 16/9;
+            object-fit: cover;
+            border-radius: var(--pico-border-radius);
+            margin-bottom: 3rem;
+        }
+
+        /* 本文エリアの調整 */
+        .entry-content {
+            font-size: 1.125rem; /* 少し文字サイズを大きくして読みやすく */
+        }
+        .entry-content h2 {
+            margin-top: 3.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 800;
+            border-bottom: 2px solid var(--pico-muted-border-color);
+            padding-bottom: 0.5rem;
+        }
+        .entry-content h3 {
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            color: var(--pico-primary);
+        }
+        .entry-content p {
+            margin-bottom: 1.8rem;
+        }
+        .entry-content blockquote {
+            background-color: var(--pico-card-sectionning-background-color);
+            border-left: 5px solid var(--pico-primary);
+            padding: 1.5rem 2rem;
+            font-style: italic;
+            border-radius: 0 var(--pico-border-radius) var(--pico-border-radius) 0;
+            margin: 2rem 0;
+        }
+        .entry-content pre {
+            border-radius: var(--pico-border-radius);
+            background-color: #1e293b;
+            color: #f8fafc;
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        /* 記事下フッター */
+        .article-footer {
+            margin-top: 5rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--pico-muted-border-color);
+        }
+        .tags-list {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 3rem;
+        }
+        .tag-badge {
+            font-size: 0.8rem;
+            background-color: var(--pico-card-sectionning-background-color);
+            padding: 0.3rem 0.8rem;
+            border-radius: 50px;
+            color: var(--pico-muted-color);
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+        .tag-badge:hover {
+            background-color: var(--pico-primary);
+            color: white;
+        }
+
+        /* 著者バイオグラフィ (記事下) */
+        .author-bio {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+            background-color: var(--pico-card-background-color);
+            padding: 1.5rem;
+            border-radius: var(--pico-border-radius);
+            margin-bottom: 3rem;
+            border: 1px solid var(--pico-muted-border-color);
+        }
+        .author-bio img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+        .author-bio-content h4 {
+            margin-bottom: 0.5rem;
+            font-weight: 800;
+            font-size: 1.1rem;
+        }
+        .author-bio-content p {
+            font-size: 0.9rem;
+            color: var(--pico-muted-color);
+            margin-bottom: 0;
+            line-height: 1.5;
+        }
+
+        /* ページャー */
+        .pager {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 2rem;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header (共通) -->
+    <header>
+        <div class="container">
+            <nav>
+                <ul>
+                    <li><a href="index.html" class="contrast" style="font-size: 1.5rem; font-weight: 800; letter-spacing: -0.025em;">Takumi's Log</a></li>
+                </ul>
+                <ul>
+                    <li><a href="#" class="secondary">About</a></li>
+                    <li><a href="#" class="secondary">Works</a></li>
+                    <li>
+                        <button id="theme-toggle" class="theme-toggle"><i data-lucide="sun" class="icon-sun"></i><i data-lucide="moon" class="icon-moon" style="display: none;"></i></button>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- サイドバーなしの1カラムレイアウト -->
+        <div class="layout-single">
+            
+            <article>
+                <header class="article-header">
+                    <div class="article-meta">
+                        <time datetime="2024-05-15">2024.05.15</time>
+                        <span style="margin: 0 0.5rem;">•</span>
+                        <span style="color: var(--pico-primary);">Web Design</span>
+                    </div>
+                    <h1 class="article-title">Pico.css v2で構築する、<br>ミニマルでポップなブログデザイン</h1>
+                </header>
+
+                <div style="background-color: #fdba74; width: 100%; aspect-ratio: 16/9; display: flex; align-items: center; justify-content: center; color: #fff; border-radius: 1rem; margin-bottom: 3rem;">
+                    <i data-lucide="image" size="64"></i>
+                </div>
+
+                <div class="entry-content">
+                    <p>
+                        最近、複雑なCSSフレームワークに疲れてしまい、原点回帰としてPico.cssを触っています。
+                        クラス名をほとんど書かずにセマンティックなHTMLだけで完結する思想は、書くことに集中したいブログという媒体に最適だと感じました。
+                    </p>
+
+                    <h2>なぜPico.cssなのか</h2>
+                    <p>
+                        Tailwind CSSは素晴らしいですが、個人のミニブログには少しオーバーキルな場合があります。
+                        Pico.css v2では、CSS変数の活用によりカスタマイズ性が大幅に向上しており、ダークモードへの対応も一瞬で完了します。
+                    </p>
+                    <p>
+                        画面右側のサイドバーを撤去し、記事本文に集中できるシングルカラムのデザインに変更しました。これにより、視線の移動が減り、没入感のある読書体験を提供できます。
+                    </p>
+
+                    <h3>コードブロックの例</h3>
+                    <p>Pythonでの設定ファイルは以下のようになります。</p>
+                    <pre><code>AUTHOR = 'Takumi'
+SITENAME = "Takumi's Log"
+SITEURL = ""
+
+PATH = 'content'
+TIMEZONE = 'Asia/Tokyo'
+DEFAULT_LANG = 'ja'</code></pre>
+
+                    <h3>引用のデザイン</h3>
+                    <blockquote>
+                        シンプルであることは、複雑であることよりも難しい。<br>
+                        物事をシンプルにするためには、懸命に努力して思考を明瞭にしなければならないからだ。<br>
+                        <cite>— Steve Jobs</cite>
+                    </blockquote>
+
+                    <h2>まとめ</h2>
+                    <p>
+                        今回は「モダン」「ポップ」をテーマに、オレンジを基調としたデザインを作ってみました。
+                        PelicanなどのSSGと組み合わせることで、爆速なブログ環境が手に入ります。
+                    </p>
+                </div>
+
+                <footer class="article-footer">
+                    <div class="tags-list">
+                        <a href="#" class="tag-badge">#CSS</a>
+                        <a href="#" class="tag-badge">#PicoCSS</a>
+                        <a href="#" class="tag-badge">#Design</a>
+                    </div>
+                    
+                    <!-- 著者バイオ (記事下に移動) -->
+                    <div class="author-bio">
+                        <img src="https://ui-avatars.com/api/?name=Takumi&background=f97316&color=fff&size=128" alt="Takumi">
+                        <div class="author-bio-content">
+                            <h4>Takumi</h4>
+                            <p>
+                                東京在住のWeb開発者。シンプルで効率的なコードと、美味しいコーヒーが好きです。
+                                週末はカメラを持って街を散歩しています。
+                            </p>
+                            <div style="margin-top: 0.5rem; display:flex; gap:0.8rem;">
+                                <a href="#" class="secondary" style="font-size:0.9rem;">Twitter</a>
+                                <a href="#" class="secondary" style="font-size:0.9rem;">GitHub</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <nav class="pager">
+                        <a href="#" class="secondary">← 前の記事</a>
+                        <a href="index.html" role="button" class="outline">一覧に戻る</a>
+                        <a href="#" class="secondary">次の記事 →</a>
+                    </nav>
+                </footer>
+            </article>
+
+        </div>
+    </main>
+
+    <!-- Footer (共通) -->
+    <footer class="container" style="margin-top: 4rem; padding: 3rem 0; border-top: 1px solid var(--pico-muted-border-color); text-align: center; color: var(--pico-muted-color); font-size: 0.9rem;">
+        <p>&copy; 2024 Takumi's Log. <br>Built with <span style="color: var(--pico-primary);">❤</span> and Pico.css</p>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const html = document.documentElement;
+        const iconSun = document.querySelector('.icon-sun');
+        const iconMoon = document.querySelector('.icon-moon');
+        function updateIcons(theme) {
+            if (theme === 'dark') { iconSun.style.display = 'none'; iconMoon.style.display = 'block'; } 
+            else { iconSun.style.display = 'block'; iconMoon.style.display = 'none'; }
+        }
+        themeToggleBtn.addEventListener('click', () => {
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            html.setAttribute('data-theme', newTheme);
+            updateIcons(newTheme);
+        });
+        updateIcons(html.getAttribute('data-theme'));
+    </script>
+</body>
+</html>

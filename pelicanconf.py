@@ -1,8 +1,14 @@
-AUTHOR = 'しま（shima10-x1p）'
-SITENAME = '夏島諸島'
+AUTHOR = 'しま(shima10-x1p)'
+SITENAME = 'しま'
 SITEURL = ""
+RELATIVE_URLS = True
 
 PATH = "content"
+THEME = "themes/shima-island"
+ARTICLE_PATHS = ["articles"]
+
+ARTICLE_URL = "articles/{date:%Y}/{date:%m}/{slug}/"
+ARTICLE_SAVE_AS = "articles/{date:%Y}/{date:%m}/{slug}/index.html"
 
 TIMEZONE = 'Asia/Tokyo'
 
@@ -24,10 +30,19 @@ LINKS = (
 )
 
 # Social widget
-# Social widget
 SOCIAL = (
-    ("GitHub", "https://github.com/shima10-x1p"),
-    ("Twitter", "https://twitter.com/shima10_x1p"),
+    ("You can add links in your config file", "#"),
+    ("Another social link", "#"),
+)
+
+PROFILE_NAME = "しま"
+PROFILE_IMAGE_URL = "https://avatars.githubusercontent.com/u/57385580?v=4"
+PROFILE_BIO_LINES = (
+    "メモを残します。",
+)
+PROFILE_SOCIAL_LINKS = (
+    ("GitHub", "https://github.com/shima10-x1p", "github"),
+    ("Twitter", "https://x.com/shima10_x1p", "twitter"),
 )
 
 DEFAULT_PAGINATION = 10
@@ -40,24 +55,3 @@ STATIC_PATHS = ["extra/CNAME"]
 EXTRA_PATH_METADATA = {
     "extra/CNAME": {"path": "CNAME"},
 }
-
-THEME = 'theme/natsu-shima'
-
-AUTHOR_BIO = {
-    "しま（shima10-x1p）": "PythonとWeb開発が好きなエンジニアです。Pelicanでブログを書いています。"
-}
-
-# Content paths
-ARTICLE_PATHS = ['articles']
-PAGE_PATHS = ['pages']
-
-# URL settings
-ARTICLE_URL = 'articles/{date:%Y}/{date:%m}/{slug}.html'
-ARTICLE_SAVE_AS = 'articles/{date:%Y}/{date:%m}/{slug}.html'
-PAGE_URL = 'pages/{slug}.html'
-PAGE_SAVE_AS = 'pages/{slug}.html'
-
-# Disable Author pages
-AUTHOR_SAVE_AS = ''
-AUTHORS_SAVE_AS = ''
-AUTHOR_URL = ''

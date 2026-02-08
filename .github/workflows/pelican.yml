@@ -14,4 +14,4 @@ jobs:
       settings: "publishconf.py"         # 公開用設定でビルド
       requirements: "pelican[markdown]"  # 必要に応じて -r requirements.txt でも可
       siteurl: "https://www.shima10-x1p.net"     # ← カスタムドメインを明示
-      python: "3.12"
+      python: "3.14"
