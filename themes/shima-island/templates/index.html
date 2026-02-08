@@ -16,26 +16,29 @@
 {% if article_list %}
     {% for article in article_list %}
     <article class="blog-post">
-        <a href="{{ SITEURL }}/{{ article.url }}" class="post-thumbnail-link">
-            <div class="post-thumbnail">
+        <a href="{{ SITEURL }}/{{ article.url }}" class="post-thumbnail">
+            <span class="post-thumbnail-visual">
                 <i data-lucide="image" size="58"></i>
-            </div>
+            </span>
         </a>
-        <div class="post-meta">
-            <time datetime="{{ article.date.isoformat() }}">{{ article.locale_date }}</time>
-            {% if article.category %}
-            <span class="post-category">● {{ article.category }}</span>
+
+        <div class="post-content">
+            <div class="post-meta">
+                <time datetime="{{ article.date.isoformat() }}">{{ article.locale_date }}</time>
+                {% if article.category %}
+                <span class="post-category">● {{ article.category }}</span>
+                {% endif %}
+            </div>
+            <h2 class="post-title">
+                <a href="{{ SITEURL }}/{{ article.url }}" class="post-title-link">{{ article.title }}</a>
+            </h2>
+            {% if article.summary %}
+            <p>{{ article.summary | striptags }}</p>
+            {% else %}
+            <p>{{ article.content | striptags | truncate(140) }}</p>
             {% endif %}
+            <a href="{{ SITEURL }}/{{ article.url }}" class="read-more">Read More</a>
         </div>
-        <h2 class="post-title">
-            <a href="{{ SITEURL }}/{{ article.url }}" class="post-title-link">{{ article.title }}</a>
-        </h2>
-        {% if article.summary %}
-        <p>{{ article.summary | striptags }}</p>
-        {% else %}
-        <p>{{ article.content | striptags | truncate(140) }}</p>
-        {% endif %}
-        <a href="{{ SITEURL }}/{{ article.url }}" role="button" class="contrast read-more-button">Read More</a>
     </article>
     {% endfor %}
 {% else %}

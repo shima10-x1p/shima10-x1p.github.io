@@ -35,14 +35,14 @@ SOCIAL = (
     ("Another social link", "#"),
 )
 
-PROFILE_NAME = "shima"
-PROFILE_IMAGE_URL = "https://ui-avatars.com/api/?name=shima&background=f97316&color=fff&size=128"
+PROFILE_NAME = "しま"
+PROFILE_IMAGE_URL = "https://avatars.githubusercontent.com/u/57385580?v=4"
 PROFILE_BIO_LINES = (
-    "個人サイトのリニューアルを進めています。",
-    "開発メモと制作記録を順次公開予定です。",
+    "メモを残します。",
 )
 PROFILE_SOCIAL_LINKS = (
     ("GitHub", "https://github.com/shima10-x1p", "github"),
+    ("Twitter", "https://x.com/shima10_x1p", "twitter"),
 )
 
 DEFAULT_PAGINATION = 10

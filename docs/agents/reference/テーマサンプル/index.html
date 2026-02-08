@@ -68,23 +68,63 @@
             }
         }
 
-        /* 記事カード */
+        /* 記事カード (基本スタイル - Mobile First) */
         article.blog-post {
             background: transparent;
             border: none;
             box-shadow: none;
             padding: 0;
             margin-bottom: 4rem;
+            /* Flexboxでレイアウト制御 */
+            display: flex;
+            flex-direction: column; /* デフォルトは縦積み */
+            gap: 1.5rem;
         }
+
+        /* サムネイル画像 (基本スタイル) */
+        .post-thumbnail {
+            width: 100%; /* モバイルでは幅いっぱい */
+            height: auto;
+            aspect-ratio: 16/9;
+            object-fit: cover;
+            border-radius: var(--pico-border-radius);
+            background-color: var(--pico-muted-border-color);
+            transition: all 0.3s ease;
+            overflow: hidden;
+            display: block;
+        }
+
         article.blog-post:hover .post-thumbnail {
             transform: scale(1.02);
             box-shadow: 0 10px 20px -5px rgba(0,0,0,0.1);
         }
+
+        /* テキストエリア (基本スタイル) */
+        .post-content {
+            flex: 1;
+            min-width: 0;
+        }
+
+        /* --- PC画面 (幅768px以上) でのレイアウト変更 --- */
+        @media (min-width: 768px) {
+            article.blog-post {
+                flex-direction: row; /* 横並びに変更 */
+                align-items: flex-start;
+                gap: 2rem;
+            }
+            .post-thumbnail {
+                width: 280px; /* 画像の幅を固定してコンパクトに */
+                flex-shrink: 0; /* 画像が縮まないようにする */
+                margin-bottom: 0;
+            }
+        }
+        
+        /* タイポグラフィなど */
         .post-meta {
             color: var(--pico-muted-color);
             font-size: 0.85rem;
             font-weight: 600;
-            margin-bottom: 0.8rem;
+            margin-bottom: 0.5rem;
             display: flex;
             gap: 1rem;
             align-items: center;
@@ -95,7 +135,7 @@
             margin-bottom: 1rem;
             font-weight: 800;
             line-height: 1.3;
-            font-size: 1.75rem;
+            font-size: 1.5rem; /* 少しサイズ調整 */
         }
         .post-title a {
             text-decoration: none;
@@ -108,31 +148,20 @@
             text-decoration-thickness: 3px;
             text-decoration-color: var(--pico-primary-underline);
         }
-        .post-thumbnail {
-            width: 100%;
-            height: auto;
-            aspect-ratio: 16/9;
-            object-fit: cover;
-            border-radius: var(--pico-border-radius);
-            margin-bottom: 1.5rem;
-            background-color: var(--pico-muted-border-color);
-            transition: all 0.3s ease;
-            overflow: hidden;
-            display: block;
-        }
+        
         .read-more {
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            margin-top: 1rem;
+            margin-top: 0.5rem;
             font-weight: 700;
             text-decoration: none;
-            padding: 0.5rem 1.2rem;
+            padding: 0.4rem 1rem; /* 少し小さく */
             background-color: var(--pico-primary);
             color: white;
             border-radius: 50px;
             transition: background 0.2s;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
         }
         .read-more:hover {
             background-color: var(--pico-primary-hover);
@@ -206,38 +235,53 @@
             <div class="blog-list">
                 
                 <article class="blog-post">
+                    <!-- サムネイル -->
                     <a href="article.html" class="post-thumbnail">
                         <div style="background-color: #fdba74; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: #fff;">
                             <i data-lucide="image" size="64"></i>
                         </div>
                     </a>
-                    <div class="post-meta">
-                        <time datetime="2024-05-15">2024.05.15</time>
-                        <span style="color: var(--pico-primary);">● Web Design</span>
+                    
+                    <!-- コンテンツラッパー -->
+                    <div class="post-content">
+                        <div class="post-meta">
+                            <time datetime="2024-05-15">2024.05.15</time>
+                            <span style="color: var(--pico-primary);">● Web Design</span>
+                        </div>
+                        <h2 class="post-title">
+                            <a href="article.html">Pico.css v2で構築する、<br>ミニマルでポップなブログデザイン</a>
+                        </h2>
+                        <p>
+                            最近、複雑なCSSフレームワークに疲れてしまい、原点回帰としてPico.cssを触っています。
+                            クラス名をほとんど書かずにセマンティックなHTMLだけで完結する思想は...
+                        </p>
+                        <a href="article.html" class="read-more">Read More</a>
                     </div>
-                    <h2 class="post-title">
-                        <a href="article.html">Pico.css v2で構築する、<br>ミニマルでポップなブログデザイン</a>
-                    </h2>
-                    <p>
-                        最近、複雑なCSSフレームワークに疲れてしまい、原点回帰としてPico.cssを触っています。
-                        クラス名をほとんど書かずにセマンティックなHTMLだけで完結する思想は...
-                    </p>
-                    <a href="article.html" class="read-more">Read More</a>
                 </article>
 
                 <article class="blog-post">
-                    <div class="post-meta">
-                        <time datetime="2024-05-10">2024.05.10</time>
-                        <span style="color: var(--pico-primary);">● Life</span>
+                    <!-- サムネイル -->
+                    <a href="article.html" class="post-thumbnail">
+                        <div style="background-color: #a7f3d0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: #059669;">
+                            <i data-lucide="coffee" size="64"></i>
+                        </div>
+                    </a>
+
+                    <!-- コンテンツラッパー -->
+                    <div class="post-content">
+                        <div class="post-meta">
+                            <time datetime="2024-05-10">2024.05.10</time>
+                            <span style="color: var(--pico-primary);">● Life</span>
+                        </div>
+                        <h2 class="post-title">
+                            <a href="article.html">週末の珈琲と、積読の消化</a>
+                        </h2>
+                        <p>
+                            久しぶりに何もない週末。近所にできた新しいロースタリーへ足を運びました。
+                            深煎りのマンデリンと共に、ずっと読みかけだった技術書を読み進める時間...
+                        </p>
+                        <a href="article.html" class="read-more">Read More</a>
                     </div>
-                    <h2 class="post-title">
-                        <a href="article.html">週末の珈琲と、積読の消化</a>
-                    </h2>
-                    <p>
-                        久しぶりに何もない週末。近所にできた新しいロースタリーへ足を運びました。
-                        深煎りのマンデリンと共に、ずっと読みかけだった技術書を読み進める時間...
-                    </p>
-                    <a href="article.html" class="read-more">Read More</a>
                 </article>
 
                 <nav>
