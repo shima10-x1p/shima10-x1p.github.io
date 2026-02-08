@@ -1,0 +1,390 @@
+:root {
+    --pico-font-family: "Zen Kaku Gothic New", "M PLUS 1p", "Hiragino Kaku Gothic ProN", sans-serif;
+    --pico-line-height: 1.75;
+    --pico-primary: #f97316;
+    --pico-primary-background: #f97316;
+    --pico-primary-hover: #ea580c;
+    --pico-primary-underline: rgba(249, 115, 22, 0.45);
+    --pico-border-radius: 1rem;
+    --pico-background-color: #fff7ed;
+    --shima-paper: #fff1db;
+    --shima-hero-glow: rgba(249, 115, 22, 0.16);
+    --shima-toggle-fg: #7c2d12;
+    --shima-toggle-bg: rgba(255, 255, 255, 0.78);
+    --shima-toggle-border: rgba(124, 45, 18, 0.28);
+}
+
+[data-theme="dark"] {
+    --pico-background-color: #1c1917;
+    --pico-card-background-color: #292524;
+    --pico-color: #e7e5e4;
+    --pico-primary: #fb923c;
+    --pico-primary-background: #fb923c;
+    --pico-primary-hover: #fdba74;
+    --pico-muted-border-color: #3f3a36;
+    --shima-paper: #2f2a26;
+    --shima-hero-glow: rgba(251, 146, 60, 0.22);
+    --shima-toggle-fg: #ffedd5;
+    --shima-toggle-bg: rgba(37, 31, 27, 0.82);
+    --shima-toggle-border: rgba(255, 237, 213, 0.28);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background:
+        radial-gradient(1200px 420px at -5% -10%, var(--shima-hero-glow), transparent 60%),
+        radial-gradient(900px 320px at 105% -20%, var(--shima-hero-glow), transparent 60%),
+        var(--pico-background-color);
+}
+
+body > header {
+    padding: 0.65rem 0;
+    margin-bottom: 1.4rem;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(10px);
+    background-color: color-mix(in srgb, var(--pico-card-background-color), transparent 10%);
+    border-bottom: 1px solid var(--pico-muted-border-color);
+}
+
+.site-nav {
+    margin: 0;
+}
+
+.site-nav ul {
+    align-items: center;
+    gap: 0.7rem;
+}
+
+.brand-title {
+    font-size: 1.22rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    text-decoration: none;
+}
+
+.layout-grid {
+    display: grid;
+    gap: 3rem;
+    animation: fade-slide 0.7s ease both;
+}
+
+@media (min-width: 992px) {
+    .layout-grid {
+        grid-template-columns: 1fr 280px;
+        align-items: start;
+    }
+
+    .layout-grid aside {
+        position: sticky;
+        top: 6.2rem;
+    }
+}
+
+.layout-grid.layout-single {
+    max-width: 760px;
+    margin: 0 auto;
+    grid-template-columns: 1fr;
+}
+
+.profile-card {
+    text-align: center;
+    padding: 2rem;
+    background-color: var(--pico-card-background-color);
+    border: 1px solid var(--pico-muted-border-color);
+    border-radius: var(--pico-border-radius);
+    box-shadow: 0 20px 30px -24px rgba(30, 20, 0, 0.45);
+}
+
+.profile-img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    margin-bottom: 1rem;
+    object-fit: cover;
+    border: 4px solid var(--shima-paper);
+    box-shadow: 0 8px 16px -12px rgba(30, 20, 0, 0.7);
+}
+
+.profile-name {
+    border: 0;
+    margin-bottom: 0.6rem;
+    font-weight: 800;
+}
+
+.profile-bio {
+    font-size: 0.92rem;
+    color: var(--pico-muted-color);
+    margin-bottom: 1.2rem;
+    line-height: 1.6;
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 0.75rem;
+}
+
+.social-links a {
+    display: inline-flex;
+    width: 2rem;
+    height: 2rem;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+}
+
+.theme-toggle {
+    width: 2.25rem;
+    height: 2.25rem;
+    background: var(--shima-toggle-bg);
+    border: 1px solid var(--shima-toggle-border);
+    padding: 0;
+    color: var(--shima-toggle-fg);
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    box-shadow: 0 6px 16px -14px rgba(15, 23, 42, 0.75);
+}
+
+.theme-toggle:hover {
+    transform: translateY(-1px);
+    background-color: color-mix(in srgb, var(--shima-toggle-bg), var(--pico-primary) 8%);
+}
+
+.theme-toggle:focus-visible {
+    outline: 2px solid var(--pico-primary);
+    outline-offset: 2px;
+}
+
+.theme-toggle i {
+    width: 1rem;
+    height: 1rem;
+}
+
+.site-footer {
+    margin-top: 4rem;
+    padding: 3rem 0;
+    border-top: 1px solid var(--pico-muted-border-color);
+    text-align: center;
+    color: var(--pico-muted-color);
+    font-size: 0.9rem;
+}
+
+.site-intro {
+    margin-bottom: 2.2rem;
+}
+
+.home-title {
+    margin-bottom: 0.5rem;
+}
+
+.home-subtitle {
+    color: var(--pico-muted-color);
+    margin-bottom: 0;
+}
+
+.blog-post {
+    border: 0;
+    background: transparent;
+    box-shadow: none;
+    padding: 0;
+    margin-bottom: 4rem;
+}
+
+.post-thumbnail-link {
+    display: block;
+    margin-bottom: 1.4rem;
+}
+
+.post-thumbnail {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border-radius: 1rem;
+    background-color: color-mix(in srgb, var(--pico-primary), white 60%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.blog-post:hover .post-thumbnail {
+    transform: translateY(-2px);
+    box-shadow: 0 20px 24px -22px rgba(0, 0, 0, 0.85);
+}
+
+.post-meta {
+    color: var(--pico-muted-color);
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 0.7rem;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.post-category {
+    color: var(--pico-primary);
+}
+
+.post-title {
+    font-size: 1.75rem;
+    margin-bottom: 1rem;
+    font-weight: 800;
+    line-height: 1.3;
+}
+
+.post-title-link {
+    text-decoration: none;
+}
+
+.read-more-button {
+    border-radius: 999px;
+    margin-top: 0.8rem;
+}
+
+.empty-state {
+    padding: 2rem;
+    text-align: center;
+    border: 2px dashed var(--pico-muted-border-color);
+    border-radius: 1rem;
+}
+
+.pager-nav ul {
+    justify-content: center;
+}
+
+.article-shell {
+    padding: 0;
+    border: 0;
+    box-shadow: none;
+    background: transparent;
+}
+
+.article-header {
+    margin-bottom: 2.5rem;
+    text-align: center;
+}
+
+.article-meta {
+    color: var(--pico-muted-color);
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.65rem;
+}
+
+.article-category {
+    color: var(--pico-primary);
+}
+
+.article-title {
+    font-size: clamp(2rem, 4vw, 2.7rem);
+    font-weight: 800;
+    line-height: 1.25;
+    margin-bottom: 0;
+    word-break: auto-phrase;
+}
+
+.entry-content {
+    font-size: 1.05rem;
+}
+
+.entry-content h2 {
+    margin-top: 3.1rem;
+    margin-bottom: 1.4rem;
+    font-weight: 800;
+    border-bottom: 2px solid var(--pico-muted-border-color);
+    padding-bottom: 0.45rem;
+}
+
+.entry-content h3 {
+    margin-top: 2.3rem;
+    margin-bottom: 1rem;
+    color: var(--pico-primary);
+    font-weight: 700;
+}
+
+.entry-content blockquote {
+    background-color: var(--pico-card-sectionning-background-color);
+    border-left: 5px solid var(--pico-primary);
+    padding: 1.2rem 1.6rem;
+    border-radius: 0 1rem 1rem 0;
+}
+
+.entry-content pre {
+    border-radius: 1rem;
+    background-color: #1f2937;
+    color: #f9fafb;
+    padding: 1.2rem;
+}
+
+.article-footer {
+    margin-top: 3rem;
+    padding-top: 1.8rem;
+    border-top: 1px solid var(--pico-muted-border-color);
+}
+
+.tags-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.tag-badge {
+    font-size: 0.8rem;
+    background-color: var(--pico-card-sectionning-background-color);
+    padding: 0.25rem 0.8rem;
+    border-radius: 999px;
+    color: var(--pico-muted-color);
+    text-decoration: none;
+}
+
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+@media (max-width: 767px) {
+    body > header {
+        padding: 0.52rem 0;
+    }
+
+    .post-title {
+        font-size: 1.48rem;
+    }
+}
+
+@keyframes fade-slide {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

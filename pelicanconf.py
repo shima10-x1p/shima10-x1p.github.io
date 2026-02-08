@@ -1,8 +1,14 @@
 AUTHOR = 'しま(shima10-x1p)'
 SITENAME = 'しま'
 SITEURL = ""
+RELATIVE_URLS = True
 
 PATH = "content"
+THEME = "themes/shima-island"
+ARTICLE_PATHS = ["articles"]
+
+ARTICLE_URL = "articles/{date:%Y}/{date:%m}/{slug}/"
+ARTICLE_SAVE_AS = "articles/{date:%Y}/{date:%m}/{slug}/index.html"
 
 TIMEZONE = 'Asia/Tokyo'
 
@@ -27,6 +33,16 @@ LINKS = (
 SOCIAL = (
     ("You can add links in your config file", "#"),
     ("Another social link", "#"),
+)
+
+PROFILE_NAME = "shima"
+PROFILE_IMAGE_URL = "https://ui-avatars.com/api/?name=shima&background=f97316&color=fff&size=128"
+PROFILE_BIO_LINES = (
+    "個人サイトのリニューアルを進めています。",
+    "開発メモと制作記録を順次公開予定です。",
+)
+PROFILE_SOCIAL_LINKS = (
+    ("GitHub", "https://github.com/shima10-x1p", "github"),
 )
 
 DEFAULT_PAGINATION = 10
