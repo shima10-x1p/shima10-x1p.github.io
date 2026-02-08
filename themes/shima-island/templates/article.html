@@ -5,7 +5,27 @@
 {% block layout_mode %}single{% endblock layout_mode %}
 
 {% block content %}
+{% set thumbnail_path = article | resolve_article_thumbnail %}
+{% if thumbnail_path and (thumbnail_path.startswith("http://") or thumbnail_path.startswith("https://") or thumbnail_path.startswith("//")) %}
+    {% set thumbnail_src = thumbnail_path %}
+{% elif thumbnail_path %}
+    {% set thumbnail_src = SITEURL ~ "/" ~ thumbnail_path %}
+{% else %}
+    {% set thumbnail_src = none %}
+{% endif %}
 <article class="article-shell">
+    {% if thumbnail_src %}
+    <figure class="article-thumbnail-wrapper">
+        <img
+            src="{{ thumbnail_src }}"
+            alt="{{ article.title }}"
+            class="article-thumbnail"
+            loading="eager"
+            decoding="async"
+        />
+    </figure>
+    {% endif %}
+
     <header class="article-header">
         <div class="article-meta">
             <time datetime="{{ article.date.isoformat() }}">{{ article.locale_date }}</time>
@@ -16,6 +36,7 @@
         </div>
         <h1 class="article-title">{{ article.title }}</h1>
     </header>
+
 
     <section class="entry-content">
         {{ article.content }}

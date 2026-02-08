@@ -15,11 +15,29 @@
 
 {% if article_list %}
     {% for article in article_list %}
+    {% set thumbnail_path = article | resolve_article_thumbnail %}
+    {% if thumbnail_path and (thumbnail_path.startswith("http://") or thumbnail_path.startswith("https://") or thumbnail_path.startswith("//")) %}
+        {% set thumbnail_src = thumbnail_path %}
+    {% elif thumbnail_path %}
+        {% set thumbnail_src = SITEURL ~ "/" ~ thumbnail_path %}
+    {% else %}
+        {% set thumbnail_src = none %}
+    {% endif %}
     <article class="blog-post">
         <a href="{{ SITEURL }}/{{ article.url }}" class="post-thumbnail">
+            {% if thumbnail_src %}
+            <img
+                src="{{ thumbnail_src }}"
+                alt="{{ article.title }}"
+                class="post-thumbnail-image"
+                loading="lazy"
+                decoding="async"
+            />
+            {% else %}
             <span class="post-thumbnail-visual">
                 <i data-lucide="image" size="58"></i>
             </span>
+            {% endif %}
         </a>
 
         <div class="post-content">
