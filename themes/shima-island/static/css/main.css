@@ -74,6 +74,10 @@ body > header {
     animation: fade-slide 0.7s ease both;
 }
 
+.layout-grid > * {
+    min-width: 0;
+}
+
 @media (min-width: 992px) {
     .layout-grid {
         grid-template-columns: 1fr 280px;
@@ -349,11 +353,13 @@ body > header {
 
 .entry-content {
     font-size: 1.05rem;
+    min-width: 0;
 }
 
 .entry-content img {
     max-width: 100%;
     height: auto;
+    display: block;
 }
 
 .entry-content h2 {
@@ -383,6 +389,17 @@ body > header {
     background-color: #1f2937;
     color: #f9fafb;
     padding: 1.2rem;
+    max-width: 100%;
+    overflow-x: auto;
+}
+
+.entry-content .highlight {
+    max-width: 100%;
+    overflow-x: auto;
+}
+
+.entry-content .highlight pre {
+    margin: 0;
 }
 
 .article-footer {
