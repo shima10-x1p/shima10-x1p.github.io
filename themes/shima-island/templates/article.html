@@ -32,6 +32,17 @@
 
 {% block content %}
 <article class="article-shell">
+    <header class="article-header">
+        <div class="article-meta">
+            <time datetime="{{ article.date.isoformat() }}">{{ article.locale_date }}</time>
+            {% if article.category %}
+            <span class="article-separator">|</span>
+            <span class="article-category">{{ article.category }}</span>
+            {% endif %}
+        </div>
+        <h1 class="article-title">{{ article.title }}</h1>
+    </header>
+
     {% if thumbnail_src %}
     <figure class="article-thumbnail-wrapper">
         <img
@@ -43,18 +54,6 @@
         />
     </figure>
     {% endif %}
-
-    <header class="article-header">
-        <div class="article-meta">
-            <time datetime="{{ article.date.isoformat() }}">{{ article.locale_date }}</time>
-            {% if article.category %}
-            <span>•</span>
-            <span class="article-category">{{ article.category }}</span>
-            {% endif %}
-        </div>
-        <h1 class="article-title">{{ article.title }}</h1>
-    </header>
-
 
     <section class="entry-content">
         {{ article.content }}
@@ -68,7 +67,7 @@
             {% endfor %}
         </div>
         {% endif %}
-        <a href="{{ SITEURL }}/" role="button" class="outline">一覧に戻る</a>
+        <a href="{{ SITEURL }}/" role="button" class="outline back-to-index">一覧に戻る</a>
     </footer>
 </article>
 {% endblock content %}
