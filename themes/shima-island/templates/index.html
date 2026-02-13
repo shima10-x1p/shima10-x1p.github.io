@@ -24,59 +24,62 @@
     {% set article_list = [] %}
 {% endif %}
 
-
-{% if article_list %}
-    {% for article in article_list %}
-    {% set thumbnail_path = article | resolve_article_thumbnail %}
-    {% if thumbnail_path and (thumbnail_path.startswith("http://") or thumbnail_path.startswith("https://") or thumbnail_path.startswith("//")) %}
-        {% set thumbnail_src = thumbnail_path %}
-    {% elif thumbnail_path %}
-        {% set thumbnail_src = SITEURL ~ "/" ~ thumbnail_path %}
-    {% else %}
-        {% set thumbnail_src = none %}
-    {% endif %}
-    <article class="blog-post">
-        <a href="{{ SITEURL }}/{{ article.url }}" class="post-thumbnail">
-            {% if thumbnail_src %}
-            <img
-                src="{{ thumbnail_src }}"
-                alt="{{ article.title }}"
-                class="post-thumbnail-image"
-                loading="lazy"
-                decoding="async"
-            />
-            {% else %}
-            <span class="post-thumbnail-visual">
-                <i data-lucide="image" size="58"></i>
-            </span>
-            {% endif %}
-        </a>
-
-        <div class="post-content">
-            <div class="post-meta">
-                <time datetime="{{ article.date.isoformat() }}">{{ article.locale_date }}</time>
-                {% if article.category %}
-                <span class="post-category">● {{ article.category }}</span>
+<div class="blog-list">
+    <h2 class="section-title">Latest Articles</h2>
+    {% if article_list %}
+        {% for article in article_list %}
+        {% set thumbnail_path = article | resolve_article_thumbnail %}
+        {% if thumbnail_path and (thumbnail_path.startswith("http://") or thumbnail_path.startswith("https://") or thumbnail_path.startswith("//")) %}
+            {% set thumbnail_src = thumbnail_path %}
+        {% elif thumbnail_path %}
+            {% set thumbnail_src = SITEURL ~ "/" ~ thumbnail_path %}
+        {% else %}
+            {% set thumbnail_src = none %}
+        {% endif %}
+        <article class="blog-post">
+            <a href="{{ SITEURL }}/{{ article.url }}" class="post-thumbnail">
+                {% if thumbnail_src %}
+                <img
+                    src="{{ thumbnail_src }}"
+                    alt="{{ article.title }}"
+                    class="post-thumbnail-image"
+                    loading="lazy"
+                    decoding="async"
+                />
+                {% else %}
+                <span class="post-thumbnail-visual">
+                    <i data-lucide="image" size="58"></i>
+                </span>
                 {% endif %}
+            </a>
+
+            <div class="post-content">
+                <div class="post-meta">
+                    <time datetime="{{ article.date.isoformat() }}">{{ article.locale_date }}</time>
+                    {% if article.category %}
+                    <span class="post-separator">|</span>
+                    <span class="post-category">{{ article.category }}</span>
+                    {% endif %}
+                </div>
+                <h2 class="post-title">
+                    <a href="{{ SITEURL }}/{{ article.url }}" class="post-title-link">{{ article.title }}</a>
+                </h2>
+                {% if article.summary %}
+                <p class="post-excerpt">{{ article.summary | striptags }}</p>
+                {% else %}
+                <p class="post-excerpt">{{ article.content | striptags | truncate(140) }}</p>
+                {% endif %}
+                <a href="{{ SITEURL }}/{{ article.url }}" class="read-more">Read More →</a>
             </div>
-            <h2 class="post-title">
-                <a href="{{ SITEURL }}/{{ article.url }}" class="post-title-link">{{ article.title }}</a>
-            </h2>
-            {% if article.summary %}
-            <p>{{ article.summary | striptags }}</p>
-            {% else %}
-            <p>{{ article.content | striptags | truncate(140) }}</p>
-            {% endif %}
-            <a href="{{ SITEURL }}/{{ article.url }}" class="read-more">Read More</a>
-        </div>
+        </article>
+        {% endfor %}
+    {% else %}
+    <article class="empty-state">
+        <h2>準備中</h2>
+        <p>記事はこれから追加します。</p>
     </article>
-    {% endfor %}
-{% else %}
-<article class="empty-state">
-    <h2>準備中</h2>
-    <p>記事はこれから追加します。</p>
-</article>
-{% endif %}
+    {% endif %}
+</div>
 
 {% if articles_page and articles_paginator.num_pages > 1 %}
 <nav class="pager-nav">

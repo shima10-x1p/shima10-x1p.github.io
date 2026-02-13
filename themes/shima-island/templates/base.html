@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/css/main.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+1p:wght@400;500;700;800&family=Zen+Kaku+Gothic+New:wght@500;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700;900&family=Noto+Sans+JP:wght@500;700;900&display=swap" rel="stylesheet" />
     <script src="https://unpkg.com/lucide@latest"></script>
     {% block extra_head %}{% endblock extra_head %}
 </head>
@@ -37,14 +37,20 @@
 
     {% set layout_mode %}{% block layout_mode %}with-sidebar{% endblock layout_mode %}{% endset %}
     {% set profile_name = PROFILE_NAME | default("shima", true) %}
-    {% set profile_image_url = PROFILE_IMAGE_URL | default("https://ui-avatars.com/api/?name=shima&background=f97316&color=fff&size=128", true) %}
+    {% set profile_id = PROFILE_ID | default("@shima10_x1p", true) %}
+    {% set profile_image_url = PROFILE_IMAGE_URL | default("https://ui-avatars.com/api/?name=shima&background=ffffff&color=000000&size=128&bold=true", true) %}
     {% set profile_bio_lines = PROFILE_BIO_LINES | default(("個人サイトのリニューアルを進めています。", "開発メモと制作記録を順次公開予定です。"), true) %}
     {% set profile_social_links = PROFILE_SOCIAL_LINKS | default((("GitHub", "https://github.com/shima10-x1p", "github"),), true) %}
     {% set sidebar_content %}
         {% block sidebar %}
         <div class="profile-card">
-            <img src="{{ profile_image_url }}" alt="{{ profile_name }}" class="profile-img" />
-            <h3 class="profile-name">{{ profile_name }}</h3>
+            <div class="profile-header">
+                <img src="{{ profile_image_url }}" alt="{{ profile_name }}" class="profile-img" />
+                <div>
+                    <h3 class="profile-name">{{ profile_name }}</h3>
+                    <small class="profile-id">{{ profile_id }}</small>
+                </div>
+            </div>
             <p class="profile-bio">
                 {% for line in profile_bio_lines %}
                 {{ line }}{% if not loop.last %}<br />{% endif %}
@@ -79,7 +85,7 @@
     </main>
 
     <footer class="container site-footer">
-        <p>&copy; 2026 {{ SITENAME }}.</p>
+        <p>&copy; 2026 {{ SITENAME }}. <br />Built with <span style="color: var(--pico-primary);">❤</span> and Pico.css</p>
     </footer>
 
     <script>
