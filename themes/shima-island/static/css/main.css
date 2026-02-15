@@ -32,7 +32,7 @@ body {
 }
 
 body > header {
-    padding: 1rem 0;
+    padding: 0.1rem 0;
     background-color: var(--pico-background-color);
     border-bottom: 2px solid var(--pico-muted-border-color);
     margin-bottom: 3rem;
@@ -190,6 +190,7 @@ body > header {
 .blog-post {
     background: transparent;
     border: 2px solid var(--pico-muted-border-color);
+    box-shadow: 4px 4px 0 var(--pico-muted-border-color);
     padding: 1.5rem;
     margin-bottom: 2rem;
     display: flex;
@@ -201,7 +202,6 @@ body > header {
 .blog-post:hover {
     border-color: var(--pico-primary);
     transform: translateY(-2px);
-    box-shadow: 4px 4px 0 var(--pico-muted-border-color);
 }
 
 .post-thumbnail {
@@ -242,6 +242,8 @@ body > header {
 .post-content {
     flex: 1;
     min-width: 0;
+    margin-top: 1rem;
+    margin-right: 1rem;
 }
 
 .post-meta {
@@ -326,6 +328,7 @@ body > header {
 .article-header {
     margin-bottom: 3rem;
     text-align: center;
+    background-color: white;
 }
 
 .article-meta {
@@ -479,6 +482,7 @@ body > header {
     margin-top: 6rem;
     padding-top: 2rem;
     border-top: 2px solid var(--pico-muted-border-color);
+    background-color: white;
 }
 
 .tags-list {
@@ -536,11 +540,10 @@ body > header {
         align-items: flex-start;
         gap: 2rem;
         padding: 0;
-        border: 0;
-        border-bottom: 2px solid var(--pico-muted-border-color);
+        border: 2px solid var(--pico-muted-border-color);
+        box-shadow: 4px 4px 0 var(--pico-muted-border-color);
         padding-bottom: 2rem;
         margin-bottom: 3rem;
-        box-shadow: none;
         transform: none;
     }
 
@@ -549,6 +552,7 @@ body > header {
     }
 
     .post-thumbnail {
+        margin: 1rem;
         width: 240px;
         flex-shrink: 0;
     }
