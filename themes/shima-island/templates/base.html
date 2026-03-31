@@ -10,7 +10,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700;900&family=Noto+Sans+JP:wght@500;700;900&display=swap" rel="stylesheet" />
-    <script src="https://unpkg.com/lucide@latest"></script>
     {% block extra_head %}{% endblock extra_head %}
 </head>
 <body>
@@ -23,7 +22,7 @@
                     </li>
                 </ul>
                 <ul>
-                    <li><a href="{{ SITEURL }}/archives.html" class="secondary">アーカイブ</a></li>
+                    <li><a href="{{ SITEURL }}/archives.html">Archives</a></li>
                 </ul>
             </nav>
         </div>
@@ -82,41 +81,5 @@
         <p>&copy; 2026 {{ SITENAME }}</p>
     </footer>
 
-    <script>
-        lucide.createIcons();
-        const themeToggleButton = document.getElementById("theme-toggle");
-        const root = document.documentElement;
-        const iconSun = document.querySelector(".icon-sun");
-        const iconMoon = document.querySelector(".icon-moon");
-
-        const updateIcons = (theme) => {
-            if (theme === "dark") {
-                iconSun.style.display = "none";
-                iconMoon.style.display = "block";
-                return;
-            }
-            iconSun.style.display = "block";
-            iconMoon.style.display = "none";
-        };
-
-        const initializeTheme = () => {
-            const stored = localStorage.getItem("shima-theme");
-            const initial = stored || "light";
-            root.setAttribute("data-theme", initial);
-            updateIcons(initial);
-        };
-
-        if (themeToggleButton) {
-            themeToggleButton.addEventListener("click", () => {
-                const current = root.getAttribute("data-theme") || "light";
-                const next = current === "light" ? "dark" : "light";
-                root.setAttribute("data-theme", next);
-                localStorage.setItem("shima-theme", next);
-                updateIcons(next);
-            });
-        }
-
-        initializeTheme();
-    </script>
 </body>
 </html>

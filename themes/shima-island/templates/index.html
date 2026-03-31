@@ -4,6 +4,7 @@
 
 {% block title %}{{ SITENAME }}{% endblock title %}
 {% block page_description %}{{ site_summary }}{% endblock page_description %}
+{% block layout_mode %}single{% endblock layout_mode %}
 
 {% block extra_head %}
     <meta property="og:type" content="website" />
@@ -24,53 +25,46 @@
     {% set article_list = [] %}
 {% endif %}
 
-<div class="blog-list">
+<header class="home-intro">
+    <p class="home-intro-eyebrow">Welcome</p>
+    <h1 class="home-intro-title">静かな一列レイアウトで、開発メモと制作記録をまとめています。</h1>
+</header>
+
+<section class="blog-list" aria-label="記事一覧">
     <h2 class="section-title">記事一覧</h2>
     {% if article_list %}
         {% for article in article_list %}
-        {% set thumbnail_path = article | resolve_article_thumbnail %}
-        {% if thumbnail_path and (thumbnail_path.startswith("http://") or thumbnail_path.startswith("https://") or thumbnail_path.startswith("//")) %}
-            {% set thumbnail_src = thumbnail_path %}
-        {% elif thumbnail_path %}
-            {% set thumbnail_src = SITEURL ~ "/" ~ thumbnail_path %}
-        {% else %}
-            {% set thumbnail_src = none %}
-        {% endif %}
+        {% set read_minutes = ((article.content | striptags | wordcount) // 220) + 1 %}
         <article class="blog-post">
-            <a href="{{ SITEURL }}/{{ article.url }}" class="post-thumbnail">
-                {% if thumbnail_src %}
-                <img
-                    src="{{ thumbnail_src }}"
-                    alt="{{ article.title }}"
-                    class="post-thumbnail-image"
-                    loading="lazy"
-                    decoding="async"
-                />
-                {% else %}
-                <span class="post-thumbnail-visual">
-                    <i data-lucide="image" size="58"></i>
-                </span>
-                {% endif %}
-            </a>
+            <h3 class="post-title">
+                <a href="{{ SITEURL }}/{{ article.url }}" class="post-title-link">{{ article.title }}</a>
+            </h3>
 
-            <div class="post-content">
-                <div class="post-meta">
-                    <time datetime="{{ article.date.isoformat() }}">{{ article.locale_date }}</time>
-                    {% if article.category %}
-                    <span class="post-separator">|</span>
-                    <span class="post-category">{{ article.category }}</span>
-                    {% endif %}
-                </div>
-                <h2 class="post-title">
-                    <a href="{{ SITEURL }}/{{ article.url }}" class="post-title-link">{{ article.title }}</a>
-                </h2>
-                {% if article.summary %}
-                <p class="post-excerpt">{{ article.summary | striptags }}</p>
-                {% else %}
-                <p class="post-excerpt">{{ article.content | striptags | truncate(140) }}</p>
-                {% endif %}
-                <a href="{{ SITEURL }}/{{ article.url }}" class="read-more">続きを読む →</a>
-            </div>
+            <p class="post-meta">
+                <span>{{ article.author | default(AUTHOR, true) }}</span>
+                <span aria-hidden="true">·</span>
+                <time datetime="{{ article.date.isoformat() }}">{{ article.locale_date }}</time>
+                <span aria-hidden="true">·</span>
+                <span>{{ read_minutes }} min read</span>
+            </p>
+
+            {% if article.tags %}
+            <p class="post-tags">
+                {% for tag in article.tags %}
+                <a href="{{ SITEURL }}/{{ tag.url }}" class="post-tag">#{{ tag }}</a>{% if not loop.last %} {% endif %}
+                {% endfor %}
+            </p>
+            {% endif %}
+
+            {% if article.summary %}
+            <p class="post-excerpt">{{ article.summary | striptags }}</p>
+            {% else %}
+            <p class="post-excerpt">{{ article.content | striptags | truncate(180) }}</p>
+            {% endif %}
+
+            <p class="post-readmore-wrap">
+                <a href="{{ SITEURL }}/{{ article.url }}" class="read-more">続きを読む</a>
+            </p>
         </article>
         {% endfor %}
     {% else %}
@@ -79,20 +73,20 @@
         <p>記事はこれから追加します。</p>
     </article>
     {% endif %}
-</div>
+</section>
 
 {% if articles_page and articles_paginator.num_pages > 1 %}
-<nav class="pager-nav">
+<nav class="pager-nav" aria-label="Pagination">
     <ul>
         {% if articles_page.has_previous() %}
-        <li><a href="{{ SITEURL }}/{{ articles_previous_page.url }}" class="secondary">← 前へ</a></li>
+        <li><a href="{{ SITEURL }}/{{ articles_previous_page.url }}">← 前へ</a></li>
         {% else %}
-        <li><a href="#" class="secondary" aria-disabled="true">← 前へ</a></li>
+        <li><a href="#" aria-disabled="true">← 前へ</a></li>
         {% endif %}
         {% if articles_page.has_next() %}
-        <li><a href="{{ SITEURL }}/{{ articles_next_page.url }}" class="secondary">次へ →</a></li>
+        <li><a href="{{ SITEURL }}/{{ articles_next_page.url }}">次へ →</a></li>
         {% else %}
-        <li><a href="#" class="secondary" aria-disabled="true">次へ →</a></li>
+        <li><a href="#" aria-disabled="true">次へ →</a></li>
         {% endif %}
     </ul>
 </nav>
