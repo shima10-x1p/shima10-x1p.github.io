@@ -71,32 +71,13 @@ body > header {
     display: none;
 }
 
-.home-intro {
-    margin-bottom: 3rem;
-}
-
-.home-intro-eyebrow {
-    margin-bottom: 0.5rem;
-    color: var(--pico-muted-color);
-    font-size: 0.78rem;
-    letter-spacing: 0.09em;
-    text-transform: uppercase;
-}
-
-.home-intro-title {
-    margin: 0;
-    font-size: clamp(1.7rem, 4vw, 2.2rem);
-    line-height: 1.35;
-    font-weight: 700;
-}
-
 .section-title {
-    margin: 0 0 1rem;
-    font-size: 1rem;
-    font-weight: 600;
-    color: var(--pico-muted-color);
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
+    margin: 0 0 1.6rem;
+    font-size: clamp(1.85rem, 4vw, 2.25rem);
+    font-weight: 700;
+    color: #27313d;
+    letter-spacing: 0.01em;
+    text-transform: none;
 }
 
 .blog-post {
@@ -109,8 +90,16 @@ body > header {
     border-bottom: 1px solid var(--pico-muted-border-color);
 }
 
+.post-row-header {
+    display: flex;
+    gap: 1rem;
+    align-items: baseline;
+    justify-content: space-between;
+}
+
 .post-title {
     margin: 0;
+    flex: 1;
     font-size: clamp(1.35rem, 2.8vw, 1.65rem);
     line-height: 1.35;
 }
@@ -125,8 +114,15 @@ body > header {
     text-decoration-thickness: 1px;
 }
 
+.post-date {
+    margin: 0;
+    white-space: nowrap;
+    font-size: 0.88rem;
+    color: #7b8793;
+}
+
 .post-meta {
-    margin: 0.7rem 0 0;
+    margin: 0.4rem 0 0;
     color: var(--pico-muted-color);
     font-size: 0.86rem;
 }
@@ -166,6 +162,20 @@ body > header {
 
 .read-more:hover {
     color: var(--pico-primary-hover);
+}
+
+.all-posts-link-wrap {
+    margin-top: 1.8rem;
+}
+
+.all-posts-link {
+    color: #4681ad;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.all-posts-link:hover {
+    text-decoration: underline;
 }
 
 .pager-nav ul {
@@ -212,6 +222,13 @@ body > header {
     font-size: 0.86rem;
 }
 
+@media (max-width: 700px) {
+    .post-row-header {
+        flex-direction: column;
+        gap: 0.45rem;
+        align-items: flex-start;
+    }
+
 @media (max-width: 640px) {
     body > header {
         margin-bottom: 2.5rem;
@@ -220,10 +237,6 @@ body > header {
     .container {
         padding-right: 1rem;
         padding-left: 1rem;
-    }
-
-    .home-intro {
-        margin-bottom: 2.2rem;
     }
 
     .blog-post {

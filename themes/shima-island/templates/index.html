@@ -25,25 +25,23 @@
     {% set article_list = [] %}
 {% endif %}
 
-<header class="home-intro">
-    <p class="home-intro-eyebrow">Welcome</p>
-    <h1 class="home-intro-title">静かな一列レイアウトで、開発メモと制作記録をまとめています。</h1>
-</header>
-
 <section class="blog-list" aria-label="記事一覧">
-    <h2 class="section-title">記事一覧</h2>
+    <h2 class="section-title">Latest Posts</h2>
     {% if article_list %}
         {% for article in article_list %}
         {% set read_minutes = ((article.content | striptags | wordcount) // 220) + 1 %}
         <article class="blog-post">
-            <h3 class="post-title">
-                <a href="{{ SITEURL }}/{{ article.url }}" class="post-title-link">{{ article.title }}</a>
-            </h3>
+            <header class="post-row-header">
+                <h3 class="post-title">
+                    <a href="{{ SITEURL }}/{{ article.url }}" class="post-title-link">{{ article.title }}</a>
+                </h3>
+                <p class="post-date">
+                    <time datetime="{{ article.date.isoformat() }}">{{ article.date.strftime("%Y-%m-%d") }}</time>
+                </p>
+            </header>
 
             <p class="post-meta">
                 <span>{{ article.author | default(AUTHOR, true) }}</span>
-                <span aria-hidden="true">·</span>
-                <time datetime="{{ article.date.isoformat() }}">{{ article.locale_date }}</time>
                 <span aria-hidden="true">·</span>
                 <span>{{ read_minutes }} min read</span>
             </p>
@@ -73,6 +71,10 @@
         <p>記事はこれから追加します。</p>
     </article>
     {% endif %}
+
+    <p class="all-posts-link-wrap">
+        <a href="{{ SITEURL }}/archives.html" class="all-posts-link">→ すべての記事を見る</a>
+    </p>
 </section>
 
 {% if articles_page and articles_paginator.num_pages > 1 %}
