@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}カテゴリ一覧 | {{ SITENAME }}{% endblock %}
+
+{% block content %}
+<section>
+    <h1 class="page-title">カテゴリ一覧</h1>
+    <ul class="category-list">
+        {% for cat, articles in categories %}
+        <li>
+            <a href="{{ SITEURL }}/{{ cat.url }}">{{ cat }}</a>
+            <span class="tag-count">({{ articles | count }})</span>
+        </li>
+        {% endfor %}
+    </ul>
+</section>
+{% endblock %}
