@@ -35,7 +35,7 @@
         {% if article.summary %}
         <p class="article-card-summary">{{ article.summary | striptags | truncate(180) }}</p>
         {% endif %}
-        <a href="{{ SITEURL }}/{{ article.url }}" class="read-more">続きを読む →</a>
+        <a href="{{ SITEURL }}/{{ article.url }}" class="read-more">＞続きを読む</a>
     </article>
     {% else %}
     <p class="empty-state">まだ記事がありません。</p>

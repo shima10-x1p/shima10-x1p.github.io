@@ -1,13 +1,18 @@
 {% extends "base.html" %}
 
+{% set article_summary = article.summary | default(article.content, true) | striptags | replace("\n", " ") | truncate(160) %}
+
 {% block title %}{{ article.title }} | {{ SITENAME }}{% endblock %}
-{% block description %}{{ article.summary | striptags | truncate(160) }}{% endblock %}
+{% block description %}{{ article_summary }}{% endblock %}
 
 {% block extra_head %}
 <meta property="og:type" content="article" />
 <meta property="og:title" content="{{ article.title }}" />
-<meta property="og:description" content="{{ article.summary | striptags | truncate(160) }}" />
+<meta property="og:description" content="{{ article_summary }}" />
 <meta property="og:url" content="{{ SITEURL }}/{{ article.url }}" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="{{ article.title }}" />
+<meta name="twitter:description" content="{{ article_summary }}" />
 {% endblock %}
 
 {% block content %}
