@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}アーカイブ | {{ SITENAME }}{% endblock %}
+
+{% block content %}
+<section>
+    <h1 class="page-title">アーカイブ</h1>
+    {% if dates %}
+    <ul class="archive-list">
+        {% for article in dates %}
+        <li class="archive-item">
+            <time datetime="{{ article.date.isoformat() }}">{{ article.date.strftime("%Y-%m-%d") }}</time>
+            <a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a>
+        </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p class="empty-state">まだ記事がありません。</p>
+    {% endif %}
+</section>
+{% endblock %}

@@ -6,7 +6,7 @@ SITEURL = ""
 RELATIVE_URLS = True
 
 PATH = "content"
-THEME = "themes/shima-island"
+THEME = "themes/shima-island-coral"
 ARTICLE_PATHS = ["articles"]
 
 ARTICLE_URL = "articles/{date:%Y}/{date:%m}/{slug}/"
@@ -130,4 +130,14 @@ def resolve_article_thumbnail(article):
 
 JINJA_FILTERS = {
     "resolve_article_thumbnail": resolve_article_thumbnail,
+}
+
+# Markdownのcodehilite設定（Pygmentsシンタックスハイライト）
+MARKDOWN = {
+    "extension_configs": {
+        "markdown.extensions.codehilite": {"css_class": "highlight"},
+        "markdown.extensions.extra": {},
+        "markdown.extensions.meta": {},
+    },
+    "output_format": "html5",
 }

@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block title %}{{ SITENAME }}{% endblock %}
+{% block description %}{{ SITENAME }} - 日々の記録と開発メモ{% endblock %}
+
+{% block content %}
+<section class="article-list">
+    <h1 class="page-title">最新の記事</h1>
+
+    {% if articles_page and articles_page.object_list %}
+        {% set article_list = articles_page.object_list %}
+    {% elif articles %}
+        {% set article_list = articles %}
+    {% else %}
+        {% set article_list = [] %}
+    {% endif %}
+
+    {% for article in article_list %}
+    <article class="article-card">
+        <h2 class="article-card-title">
+            <a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a>
+        </h2>
+        <div class="article-card-meta">
+            <time datetime="{{ article.date.isoformat() }}">{{ article.date.strftime("%Y-%m-%d") }}</time>
+            <span class="meta-sep">·</span>
+            <span>{{ article.author }}</span>
+        </div>
+        {% if article.tags %}
+        <div class="tag-list">
+            {% for tag in article.tags %}
+            <a href="{{ SITEURL }}/{{ tag.url }}" class="tag-pill">#{{ tag }}</a>
+            {% endfor %}
+        </div>
+        {% endif %}
+        {% if article.summary %}
+        <p class="article-card-summary">{{ article.summary | striptags | truncate(180) }}</p>
+        {% endif %}
+        <a href="{{ SITEURL }}/{{ article.url }}" class="read-more">続きを読む →</a>
+    </article>
+    {% else %}
+    <p class="empty-state">まだ記事がありません。</p>
+    {% endfor %}
+</section>
+
+{% if articles_page and articles_paginator.num_pages > 1 %}
+<nav class="pagination" aria-label="ページネーション">
+    {% if articles_page.has_previous() %}
+    <a href="{{ SITEURL }}/{{ articles_previous_page.url }}" class="pagination-btn">← 前へ</a>
+    {% endif %}
+    <span class="pagination-info">{{ articles_page.number }} / {{ articles_paginator.num_pages }}</span>
+    {% if articles_page.has_next() %}
+    <a href="{{ SITEURL }}/{{ articles_next_page.url }}" class="pagination-btn">次へ →</a>
+    {% endif %}
+</nav>
+{% endif %}
+{% endblock %}

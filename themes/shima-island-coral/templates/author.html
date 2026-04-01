@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}{{ author }} | {{ SITENAME }}{% endblock %}
+
+{% block content %}
+<section class="article-list">
+    <h1 class="page-title">著者: {{ author }}</h1>
+
+    {% for article in articles %}
+    <article class="article-card">
+        <h2 class="article-card-title">
+            <a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a>
+        </h2>
+        <div class="article-card-meta">
+            <time datetime="{{ article.date.isoformat() }}">{{ article.date.strftime("%Y-%m-%d") }}</time>
+            {% if article.category %}
+            <span class="meta-sep">·</span>
+            <a href="{{ SITEURL }}/{{ article.category.url }}">{{ article.category }}</a>
+            {% endif %}
+        </div>
+        {% if article.summary %}
+        <p class="article-card-summary">{{ article.summary | striptags | truncate(180) }}</p>
+        {% endif %}
+    </article>
+    {% endfor %}
+</section>
+{% endblock %}
