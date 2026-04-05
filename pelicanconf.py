@@ -8,9 +8,13 @@ RELATIVE_URLS = True
 PATH = "content"
 THEME = "themes/shima-island-coral"
 ARTICLE_PATHS = ["articles"]
+PAGE_PATHS = ["pages"]
 
 ARTICLE_URL = "articles/{date:%Y}/{date:%m}/{slug}/"
 ARTICLE_SAVE_AS = "articles/{date:%Y}/{date:%m}/{slug}/index.html"
+
+PAGE_URL = "{slug}/"
+PAGE_SAVE_AS = "{slug}/index.html"
 
 TIMEZONE = 'Asia/Tokyo'
 
@@ -45,6 +49,32 @@ PROFILE_BIO_LINES = (
 PROFILE_SOCIAL_LINKS = (
     ("GitHub", "https://github.com/shima10-x1p", "github"),
     ("Twitter", "https://x.com/shima10_x1p", "twitter"),
+)
+
+# 船旅の記録（年月日, 運航会社, 航路）
+PROFILE_SHIP_VOYAGES = (
+    ("2026/02/02", "東京湾フェリー", "久里浜港 → 金谷港"),
+    ("2026/03/07", "東海汽船", "大さん橋 → 竹芝桟橋"),
+    ("2026/03/12", "ふじさん駿河湾フェリー", "清水港 → 土肥港"),
+    ("2026/03/21", "東京都観光汽船", "日の出桟橋 → 浅草")
+)
+
+# 推しVTuber（名前, チャンネルURL, 動画リスト）
+# 動画リストは (タイトル, 埋め込みURL) のタプル
+# 埋め込みURL例: https://www.youtube.com/embed/VIDEO_ID
+PROFILE_OSHI_VTUBERS = (
+    {
+        "name": "周央 サンゴ",
+        "channel_url": "https://www.youtube.com/@SuoSango",
+        "videos": (
+            ("【歌ってみた】おやすみポラリスさよならパラレルワールド/cover【周央サンゴ】", "https://www.youtube.com/embed/RBqmUsysHNc?si=_fP0FVWOfMvfDo9U"),
+            
+        ),
+    },
+)
+
+MENUITEMS = (
+    ("プロフィール", "/profile/"),
 )
 
 DEFAULT_PAGINATION = 10
