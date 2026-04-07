@@ -22,6 +22,11 @@
     --color-sub: #8a7068;
     --color-card-bg: #ffffff;
     --color-code-bg: #faeae4;
+
+    /* プロフィールヒーロー背景画像 */
+    /* 画像ファイルを themes/shima-island-coral/static/images/profile-hero-bg.jpg に配置 */
+    --profile-hero-bg: url('../images/profile-hero-bg.jpg');
+    --profile-hero-overlay: rgba(255, 255, 255, 0.85);
 }
 
 [data-theme="dark"] {
@@ -36,6 +41,7 @@
     --color-sub: #8aaabb;
     --color-card-bg: #384b5a;
     --color-code-bg: #253440;
+    --profile-hero-overlay: rgba(56, 75, 90, 0.85);
 }
 
 /* OS設定によるダークモード（手動選択なし時） */
@@ -52,6 +58,7 @@
         --color-sub: #8aaabb;
         --color-card-bg: #384b5a;
         --color-code-bg: #253440;
+        --profile-hero-overlay: rgba(56, 75, 90, 0.85);
     }
 }
 
@@ -571,11 +578,17 @@ hr {
 /* --- プロフィールページ --- */
 /* プロフィールカード（枠線のみ・影なし） */
 .profile-card {
-    background: var(--color-card-bg);
     border: 1px solid var(--color-line);
     border-radius: 12px;
     overflow: hidden;
     margin-bottom: 2em;
+    /* 背景画像にテーマカラーのオーバーレイを重ねて主張を抑える */
+    background-image:
+        linear-gradient(var(--profile-hero-overlay), var(--profile-hero-overlay)),
+        var(--profile-hero-bg);
+    background-color: var(--color-card-bg);
+    background-size: cover;
+    background-position: center;
 }
 
 .profile-hero {
