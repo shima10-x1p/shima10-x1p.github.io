@@ -25,33 +25,33 @@
 }
 
 [data-theme="dark"] {
-    --color-bg: #1e1812;
-    --color-text: #e8ddd8;
-    --color-heading: #f4ece8;
-    --color-accent: #f09080;
-    --color-link: #f09080;
-    --color-link-hover: #ffb0a0;
-    --color-line: #3a2a22;
-    --color-tag-bg: #2e2018;
-    --color-sub: #a09088;
-    --color-card-bg: #28201a;
-    --color-code-bg: #2e2018;
+    --color-bg: #2c3d4a;
+    --color-text: #d8e8f0;
+    --color-heading: #eef4f8;
+    --color-accent: #f4c656;
+    --color-link: #f4c656;
+    --color-link-hover: #fdd878;
+    --color-line: #4a6070;
+    --color-tag-bg: #384b5a;
+    --color-sub: #8aaabb;
+    --color-card-bg: #384b5a;
+    --color-code-bg: #253440;
 }
 
 /* OS設定によるダークモード（手動選択なし時） */
 @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) {
-        --color-bg: #1e1812;
-        --color-text: #e8ddd8;
-        --color-heading: #f4ece8;
-        --color-accent: #f09080;
-        --color-link: #f09080;
-        --color-link-hover: #ffb0a0;
-        --color-line: #3a2a22;
-        --color-tag-bg: #2e2018;
-        --color-sub: #a09088;
-        --color-card-bg: #28201a;
-        --color-code-bg: #2e2018;
+        --color-bg: #2c3d4a;
+        --color-text: #d8e8f0;
+        --color-heading: #eef4f8;
+        --color-accent: #f4c656;
+        --color-link: #f4c656;
+        --color-link-hover: #fdd878;
+        --color-line: #4a6070;
+        --color-tag-bg: #384b5a;
+        --color-sub: #8aaabb;
+        --color-card-bg: #384b5a;
+        --color-code-bg: #253440;
     }
 }
 
@@ -86,7 +86,7 @@ body {
 }
 
 [data-theme="dark"] ::selection {
-    background-color: rgba(240, 144, 128, 0.25);
+    background-color: rgba(244, 198, 86, 0.25);
 }
 
 /* --- タイポグラフィ --- */
