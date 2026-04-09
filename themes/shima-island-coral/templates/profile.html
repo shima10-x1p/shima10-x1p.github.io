@@ -2,6 +2,14 @@
 
 {% block title %}{{ page.title }} | {{ SITENAME }}{% endblock %}
 
+{% block extra_head %}
+<meta name="twitter:card" content="summary" />
+{% if TWITTER_USERNAME %}<meta name="twitter:site" content="{{ TWITTER_USERNAME }}" />{% endif %}
+<meta name="twitter:title" content="{{ PROFILE_NAME or AUTHOR }}" />
+{% if PROFILE_OG_DESCRIPTION %}<meta name="twitter:description" content="{{ PROFILE_OG_DESCRIPTION }}" />{% endif %}
+{% if PROFILE_IMAGE_URL %}<meta name="twitter:image" content="{{ PROFILE_IMAGE_URL }}" />{% endif %}
+{% endblock %}
+
 {% block content %}
 <div class="profile-page">
 

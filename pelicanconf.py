@@ -46,6 +46,8 @@ PROFILE_IMAGE_URL = "https://avatars.githubusercontent.com/u/57385580?v=4"
 PROFILE_BIO_LINES = (
     "メモを残します。",
 )
+PROFILE_OG_DESCRIPTION = "メモ書きをする場所"
+TWITTER_USERNAME = "@shima10_x1p"
 PROFILE_SOCIAL_LINKS = (
     ("GitHub", "https://github.com/shima10-x1p", "github"),
     ("Twitter", "https://x.com/shima10_x1p", "twitter"),
