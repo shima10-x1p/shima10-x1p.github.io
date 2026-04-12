@@ -53,4 +53,32 @@
     {% endif %}
 </nav>
 {% endif %}
+
+{% if bottles %}
+{% set bottles_count = INDEX_BOTTLES_COUNT | default(3) %}
+<section class="bottles-list bottles-list--index">
+    <h2 class="page-title">最新のボトルメール</h2>
+    {% for bottle in bottles[:bottles_count] %}
+    <a href="{{ SITEURL }}/{{ bottle.url }}" class="bottle-card">
+        <div class="bottle-card-header">
+            <h3 class="bottle-card-title">{{ bottle.title }}</h3>
+            <span class="bottle-card-count">{{ bottle.post_count }} 投稿</span>
+        </div>
+        <div class="bottle-card-meta">
+            <time datetime="{{ bottle.date.isoformat() }}">{{ bottle.date.strftime("%Y-%m-%d") }}</time>
+            <span class="meta-sep">·</span>
+            <span>最終更新 {{ bottle.last_updated.strftime("%Y-%m-%d %H:%M") }}</span>
+        </div>
+        {% if bottle.tags %}
+        <div class="tag-list">
+            {% for tag in bottle.tags %}
+            <span class="tag-pill">#{{ tag }}</span>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </a>
+    {% endfor %}
+    <a href="{{ SITEURL }}/bottles/" class="more-link">すべてのボトルメール →</a>
+</section>
+{% endif %}
 {% endblock %}

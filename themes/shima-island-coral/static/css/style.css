@@ -776,6 +776,25 @@ hr {
 }
 
 /* --- ボトルメール一覧 --- */
+.bottles-list--index {
+    margin-top: 3em;
+    padding-top: 2em;
+    border-top: 1px solid var(--color-line);
+}
+
+.more-link {
+    display: inline-block;
+    margin-top: 0.5em;
+    font-size: 0.9rem;
+    color: var(--color-link);
+    text-decoration: none;
+}
+
+.more-link:hover {
+    color: var(--color-link-hover);
+    text-decoration: underline;
+}
+
 .bottle-card {
     display: block;
     background: var(--color-card-bg);
@@ -1035,4 +1054,59 @@ hr {
     .bottle-post-body {
         padding: 1em;
     }
+}
+
+/* ==========================================================================
+   リンクカード (.link-card)
+   ========================================================================== */
+
+.link-card {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+    padding: 0.9em 1em;
+    background: var(--color-card-bg);
+    border: 1px solid var(--color-line);
+    border-radius: 10px;
+    text-decoration: none !important;
+    color: inherit;
+    transition: box-shadow 0.15s ease, border-color 0.15s ease;
+    overflow: hidden;
+    margin: 1.2em 0;
+}
+
+.link-card:hover {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    border-color: var(--color-accent);
+    text-decoration: none !important;
+}
+
+/* <span> 要素に flex を適用するため display を明示 */
+p:has(> .link-card) {
+    margin: 0;
+}
+
+.link-card__body {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25em;
+}
+
+.link-card__title {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--color-heading);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.link-card__domain {
+    font-size: 0.78rem;
+    color: var(--color-sub);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
