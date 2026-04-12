@@ -1,7 +1,7 @@
 from pathlib import Path
 
-AUTHOR = 'しま(shima10-x1p)'
-SITENAME = 'しま'
+AUTHOR = "しま(shima10-x1p)"
+SITENAME = "しま"
 SITEURL = ""
 RELATIVE_URLS = True
 
@@ -16,9 +16,9 @@ ARTICLE_SAVE_AS = "articles/{date:%Y}/{date:%m}/{slug}/index.html"
 PAGE_URL = "{slug}/"
 PAGE_SAVE_AS = "{slug}/index.html"
 
-TIMEZONE = 'Asia/Tokyo'
+TIMEZONE = "Asia/Tokyo"
 
-DEFAULT_LANG = 'ja'
+DEFAULT_LANG = "ja"
 
 # Feed generation is usually not desired when developing
 FEED_ALL_ATOM = None
@@ -43,9 +43,7 @@ SOCIAL = (
 
 PROFILE_NAME = "しま"
 PROFILE_IMAGE_URL = "https://avatars.githubusercontent.com/u/57385580?v=4"
-PROFILE_BIO_LINES = (
-    "メモを残します。",
-)
+PROFILE_BIO_LINES = ("メモを残します。",)
 PROFILE_OG_DESCRIPTION = "メモ書きをする場所"
 TWITTER_USERNAME = "@shima10_x1p"
 PROFILE_SOCIAL_LINKS = (
@@ -58,7 +56,7 @@ PROFILE_SHIP_VOYAGES = (
     ("2026/02/02", "東京湾フェリー", "久里浜港 → 金谷港"),
     ("2026/03/07", "東海汽船", "大さん橋 → 竹芝桟橋"),
     ("2026/03/12", "ふじさん駿河湾フェリー", "清水港 → 土肥港"),
-    ("2026/03/21", "東京都観光汽船", "日の出桟橋 → 浅草")
+    ("2026/03/21", "東京都観光汽船", "日の出桟橋 → 浅草"),
 )
 
 # 推しVTuber（名前, チャンネルURL, 動画リスト）
@@ -69,15 +67,22 @@ PROFILE_OSHI_VTUBERS = (
         "name": "周央 サンゴ",
         "channel_url": "https://www.youtube.com/@SuoSango",
         "videos": (
-            ("【歌ってみた】おやすみポラリスさよならパラレルワールド/cover【周央サンゴ】", "https://www.youtube.com/embed/RBqmUsysHNc?si=_fP0FVWOfMvfDo9U"),
-            
+            (
+                "【歌ってみた】おやすみポラリスさよならパラレルワールド/cover【周央サンゴ】",
+                "https://www.youtube.com/embed/RBqmUsysHNc?si=_fP0FVWOfMvfDo9U",
+            ),
         ),
     },
 )
 
 MENUITEMS = (
     ("プロフィール", "/profile/"),
+    ("ボトルメール", "/bottles/"),
 )
+
+# ボトルメール設定
+PLUGIN_PATHS = ["plugins"]
+PLUGINS = ["bottles"]
 
 DEFAULT_PAGINATION = 10
 
@@ -139,7 +144,9 @@ def resolve_article_thumbnail(article):
     if not date or not slug:
         return None
 
-    image_dir_rel = Path("images") / date.strftime("%Y") / date.strftime("%m") / str(slug)
+    image_dir_rel = (
+        Path("images") / date.strftime("%Y") / date.strftime("%m") / str(slug)
+    )
     image_dir = CONTENT_ROOT / image_dir_rel
     if not image_dir.is_dir():
         return None
