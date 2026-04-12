@@ -57,3 +57,57 @@ publishconf.py              # 本番用設定（SITEURL を上書き）
 - `uv run pelican` でビルド成功
 - ローカルプレビューで正常表示
 - 変更が目的に対して過剰でない
+
+---
+
+## ボトルメール機能
+
+スクラップ風の「短い投稿をスレッド形式で連ねる」機能。
+
+### 関連ファイル
+
+| ファイル | 役割 |
+|----------|------|
+| `plugins/bottles.py` | カスタムジェネレータープラグイン本体 |
+| `themes/shima-island-coral/templates/bottles.html` | 一覧ページテンプレート |
+| `themes/shima-island-coral/templates/bottle.html` | スレッドページテンプレート |
+| `themes/shima-island-coral/static/css/style.css` | ボトルメール用 CSS（`.bottle-*` クラス） |
+
+### コンテンツ構造
+
+```
+content/bottles/{slug}/
+    meta.md      # スレッド全体のメタ情報
+    001.md       # 個別投稿（時系列順）
+    002.md
+    ...
+```
+
+**meta.md フロントマター（必須: Title, Date, Slug / 任意: Tags）**
+
+```markdown
+Title: スレッドのタイトル
+Date: 2026-04-12
+Tags: tag1, tag2
+Slug: my-thread
+```
+
+**個別投稿フロントマター（必須: Date / 任意: Tags）**
+
+```markdown
+Date: 2026-04-12 14:30
+Tags: tag1
+```
+
+### URL 構造
+
+| ページ | URL |
+|--------|-----|
+| 一覧 | `/bottles/` |
+| スレッド | `/bottles/{slug}/` |
+
+### プラグイン実装の注意点
+
+- `MarkdownReader.read(path)` を直接呼ぶこと（`Readers.read_file()` は `Page` オブジェクトを返すため不可）
+- `metadata` の `date` は Pelican が `datetime` オブジェクトとして返す場合があるため `_parse_date` で型チェックが必要
+- コードブロックの二重枠防止: `.bottle-post-body .highlight pre { border: none; }` を CSS に設定済み
