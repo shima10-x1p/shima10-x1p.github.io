@@ -1,7 +1,16 @@
 {% extends "base.html" %}
 
+{% set bottle_description = bottle.posts[0].content | striptags | replace("\n", " ") | truncate(160) if bottle.posts else bottle.title ~ " — ボトルメール" %}
+
 {% block title %}{{ bottle.title }} | ボトルメール | {{ SITENAME }}{% endblock %}
-{% block description %}{{ bottle.title }} — ボトルメール{% endblock %}
+
+{% block extra_head %}
+<meta property="og:type" content="article" />
+<meta property="og:title" content="{{ bottle.title }}" />
+<meta property="og:url" content="{{ SITEURL }}/{{ bottle.url }}" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="{{ bottle.title }}" />
+{% endblock %}
 
 {% block content %}
 <article class="bottle-thread">
