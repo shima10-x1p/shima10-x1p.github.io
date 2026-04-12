@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}ボトルメール | {{ SITENAME }}{% endblock %}
+{% block description %}ボトルメール — 短い投稿をスレッド形式でまとめたメモ{% endblock %}
+
+{% block content %}
+<section class="bottles-list">
+    <h1 class="page-title">ボトルメール</h1>
+
+    {% if bottles %}
+    {% for bottle in bottles %}
+    <a href="{{ SITEURL }}/{{ bottle.url }}" class="bottle-card">
+        <div class="bottle-card-header">
+            <h2 class="bottle-card-title">{{ bottle.title }}</h2>
+            <span class="bottle-card-count">{{ bottle.post_count }} 投稿</span>
+        </div>
+        <div class="bottle-card-meta">
+            <time datetime="{{ bottle.date.isoformat() }}">{{ bottle.date.strftime("%Y-%m-%d") }}</time>
+            <span class="meta-sep">·</span>
+            <span>最終更新 {{ bottle.last_updated.strftime("%Y-%m-%d %H:%M") }}</span>
+        </div>
+        {% if bottle.tags %}
+        <div class="tag-list">
+            {% for tag in bottle.tags %}
+            <span class="tag-pill">#{{ tag }}</span>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </a>
+    {% endfor %}
+    {% else %}
+    <p class="empty-state">まだボトルメールがありません。</p>
+    {% endif %}
+</section>
+{% endblock %}

@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% set bottle_description = bottle.posts[0].content | striptags | replace("\n", " ") | truncate(160) if bottle.posts else bottle.title ~ " — ボトルメール" %}
+
+{% block title %}{{ bottle.title }} | ボトルメール | {{ SITENAME }}{% endblock %}
+
+{% block extra_head %}
+<meta property="og:type" content="article" />
+<meta property="og:title" content="{{ bottle.title }}" />
+<meta property="og:url" content="{{ SITEURL }}/{{ bottle.url }}" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="{{ bottle.title }}" />
+{% endblock %}
+
+{% block content %}
+<article class="bottle-thread">
+    <header class="bottle-header">
+        <h1 class="bottle-title">{{ bottle.title }}</h1>
+        <div class="bottle-meta">
+            <time datetime="{{ bottle.date.isoformat() }}">{{ bottle.date.strftime("%Y-%m-%d") }}</time>
+            <span class="meta-sep">·</span>
+            <span>{{ bottle.post_count }} 投稿</span>
+        </div>
+        {% if bottle.tags %}
+        <div class="tag-list">
+            {% for tag in bottle.tags %}
+            <span class="tag-pill">#{{ tag }}</span>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </header>
+
+    <div class="bottle-timeline">
+        {% for post in bottle.posts %}
+        <div class="bottle-post">
+            <div class="bottle-post-marker"></div>
+            <div class="bottle-post-content">
+                <div class="bottle-post-meta">
+                    <time datetime="{{ post.date.isoformat() }}">{{ post.date.strftime("%Y-%m-%d %H:%M") }}</time>
+                    {% if post.tags %}
+                    {% for tag in post.tags %}
+                    <span class="tag-pill">#{{ tag }}</span>
+                    {% endfor %}
+                    {% endif %}
+                </div>
+                <div class="bottle-post-body">
+                    {% if post.image %}
+                    <div class="bottle-post-image">
+                        <img src="{{ SITEURL }}/{{ post.image }}" alt="">
+                    </div>
+                    {% endif %}
+                    {{ post.content }}
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <footer class="bottle-footer">
+        <a href="{{ SITEURL }}/bottles/" class="back-link">← ボトルメール一覧に戻る</a>
+    </footer>
+</article>
+{% endblock %}
