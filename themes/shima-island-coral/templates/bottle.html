@@ -35,6 +35,11 @@
                     {% endif %}
                 </div>
                 <div class="bottle-post-body">
+                    {% if post.image %}
+                    <div class="bottle-post-image">
+                        <img src="{{ SITEURL }}/{{ post.image }}" alt="">
+                    </div>
+                    {% endif %}
                     {{ post.content }}
                 </div>
             </div>

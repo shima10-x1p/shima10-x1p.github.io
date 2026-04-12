@@ -45,10 +45,11 @@ class BottlePost:
         tags: 投稿固有のタグ一覧。
     """
 
-    def __init__(self, date: datetime, content: str, tags: list[str]) -> None:
+    def __init__(self, date: datetime, content: str, tags: list[str], image: str | None = None) -> None:
         self.date = date
         self.content = content
         self.tags = tags
+        self.image = image  # 添付画像のサイトルート相対パス（例: images/bottles/slug/001.jpg）
 
 
 class Bottle:
@@ -216,7 +217,9 @@ class BottlesGenerator(Generator):
             return None
 
         tags = self._parse_tags(meta.get("tags", ""))
-        return BottlePost(date=date, content=content, tags=tags)
+        image_raw = meta.get("image", None)
+        image = str(image_raw).strip() if image_raw else None
+        return BottlePost(date=date, content=content, tags=tags, image=image)
 
     @staticmethod
     def _read_md(path: Path, reader: MarkdownReader) -> tuple[str, dict[str, Any]]:
