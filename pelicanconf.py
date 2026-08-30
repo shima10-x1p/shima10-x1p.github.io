@@ -1,186 +1,91 @@
+from __future__ import annotations
+
 from pathlib import Path
 
-AUTHOR = "しま(shima10-x1p)"
-SITENAME = "しま"
-SITEURL = ""
-RELATIVE_URLS = True
+BASE_DIR = Path(__file__).resolve().parent
+
+# Profile: replace the values in this block with your own information.
+AUTHOR = "しま"
+SITENAME = "shima10-x1p.net"
+SITE_DESCRIPTION = "雑記"
+SITESUBTITLE = SITE_DESCRIPTION
+COPYRIGHT_YEAR = 2026
+PROFILE_EYEBROW = ""
+PROFILE_TAGLINE = (
+    "暇なときに、勉強がてら色々やります。"
+)
+PROFILE_SHORT_BIO = (
+    "暇なときに、勉強がてら色々やります。"
+)
+PROFILE_AVATAR_URL = "https://avatars.githubusercontent.com/u/57385580?v=4"
+PROFILE_ROLE = "しがないソフトウェアエンジニア"
+PROFILE_LOCATION = "日本 / 千葉"
+PROFILE_INTERESTS = "Python, にじさんじ"
+# About page: add, remove, or reorder items to customize the displayed tags.
+ABOUT_INTERESTS = (
+    "Python",
+    "周央サンゴ",
+    "家長むぎ"
+)
+SOCIAL = (
+    ("GitHub", "https://github.com/shima10-x1p"),
+    ("Twitter", "https://twitter.com/shima10_x1p"),
+)
 
 PATH = "content"
-THEME = "themes/shima-island-coral"
-ARTICLE_PATHS = ["articles"]
-PAGE_PATHS = ["pages"]
+OUTPUT_PATH = "output"
+THEME = str(BASE_DIR / "theme")
+PLUGIN_PATHS = [str(BASE_DIR / "plugins")]
 
-ARTICLE_URL = "articles/{date:%Y}/{date:%m}/{slug}/"
-ARTICLE_SAVE_AS = "articles/{date:%Y}/{date:%m}/{slug}/index.html"
+TIMEZONE = "Asia/Tokyo"
+DEFAULT_LANG = "ja"
+DEFAULT_DATE_FORMAT = "%Y年%-m月%-d日"
 
+ARTICLE_URL = "blog/{slug}/"
+ARTICLE_SAVE_AS = "blog/{slug}/index.html"
 PAGE_URL = "{slug}/"
 PAGE_SAVE_AS = "{slug}/index.html"
 
-TIMEZONE = "Asia/Tokyo"
+DIRECT_TEMPLATES = ["index", "archives"]
+ARCHIVES_URL = "blog/"
+ARCHIVES_SAVE_AS = "blog/index.html"
 
-DEFAULT_LANG = "ja"
+# The site intentionally has no category, tag, or author archive pages.
+CATEGORY_SAVE_AS = ""
+CATEGORIES_SAVE_AS = ""
+TAG_SAVE_AS = ""
+TAGS_SAVE_AS = ""
+AUTHOR_SAVE_AS = ""
+AUTHORS_SAVE_AS = ""
 
-# Feed generation is usually not desired when developing
-FEED_ALL_ATOM = None
-CATEGORY_FEED_ATOM = None
-TRANSLATION_FEED_ATOM = None
-AUTHOR_FEED_ATOM = None
-AUTHOR_FEED_RSS = None
-
-# Blogroll
-LINKS = (
-    ("Pelican", "https://getpelican.com/"),
-    ("Python.org", "https://www.python.org/"),
-    ("Jinja2", "https://palletsprojects.com/p/jinja/"),
-    ("You can modify those links in your config file", "#"),
-)
-
-# Social widget
-SOCIAL = (
-    ("You can add links in your config file", "#"),
-    ("Another social link", "#"),
-)
-
-PROFILE_NAME = "しま"
-PROFILE_IMAGE_URL = "https://avatars.githubusercontent.com/u/57385580?v=4"
-PROFILE_BIO_LINES = ("メモを残します。",)
-PROFILE_OG_DESCRIPTION = "メモ書きをする場所"
-TWITTER_USERNAME = "@shima10_x1p"
-PROFILE_SOCIAL_LINKS = (
-    ("GitHub", "https://github.com/shima10-x1p", "github"),
-    ("Twitter", "https://x.com/shima10_x1p", "twitter"),
-)
-
-# 船旅の記録（年月日, 運航会社, 航路）
-PROFILE_SHIP_VOYAGES = (
-    ("2026/02/02", "東京湾フェリー", "久里浜港 → 金谷港"),
-    ("2026/03/07", "東海汽船", "大さん橋 → 竹芝桟橋"),
-    ("2026/03/12", "ふじさん駿河湾フェリー", "清水港 → 土肥港"),
-    ("2026/03/21", "東京都観光汽船", "日の出桟橋 → 浅草"),
-    ("2026/04/11", "富士急マリンリゾート", "熱海港 ⇔ 初島港"),
-)
-
-# 推しVTuber（名前, チャンネルURL, 動画リスト）
-# 動画リストは (タイトル, 埋め込みURL) のタプル
-# 埋め込みURL例: https://www.youtube.com/embed/VIDEO_ID
-PROFILE_OSHI_VTUBERS = (
-    {
-        "name": "周央 サンゴ",
-        "channel_url": "https://www.youtube.com/@SuoSango",
-        "videos": (
-            (
-                "【歌ってみた】おやすみポラリスさよならパラレルワールド/cover【周央サンゴ】",
-                "https://www.youtube.com/embed/RBqmUsysHNc?si=_fP0FVWOfMvfDo9U",
-            ),
-        ),
-    },
-)
-
-MENUITEMS = (
-    ("プロフィール", "/profile/"),
-    ("ボトルメール", "/bottles/"),
-)
-
-# ボトルメール設定
-PLUGIN_PATHS = ["plugins"]
-PLUGINS = ["bottles", "link_card"]
-
-# トップページに表示するボトルメールの件数
-INDEX_BOTTLES_COUNT = 3
-
-DEFAULT_PAGINATION = 10
-
-# Uncomment following line if you want document-relative URLs when developing
-# RELATIVE_URLS = True
-# STATIC_PATHS
-STATIC_PATHS = ["extra/CNAME", "images"]
-
+STATIC_PATHS = ["extra", "images"]
 EXTRA_PATH_METADATA = {
     "extra/CNAME": {"path": "CNAME"},
 }
 
-IMAGE_EXTENSIONS = ("webp", "jpg", "jpeg", "png", "avif", "gif")
-CONTENT_ROOT = (Path(__file__).resolve().parent / PATH).resolve()
+FEED_ALL_RSS = "feeds/all.rss.xml"
+FEED_DOMAIN = "http://localhost:8000"
+FEED_ALL_ATOM = None
+CATEGORY_FEED_ATOM = None
+CATEGORY_FEED_RSS = None
+AUTHOR_FEED_ATOM = None
+AUTHOR_FEED_RSS = None
+TRANSLATION_FEED_ATOM = None
+TRANSLATION_FEED_RSS = None
 
-
-def _normalize_thumbnail_path(raw_value):
-    if raw_value is None:
-        return None
-
-    value = str(raw_value).strip()
-    if not value:
-        return None
-
-    if value.startswith(("http://", "https://", "//")):
-        return value
-
-    return value.lstrip("/").replace("\\", "/")
-
-
-def _resolve_named_image(image_dir, stem):
-    for ext in IMAGE_EXTENSIONS:
-        candidate = image_dir / f"{stem}.{ext}"
-        if candidate.is_file():
-            return candidate
-    return None
-
-
-def _relative_to_content_root(file_path):
-    try:
-        return file_path.resolve().relative_to(CONTENT_ROOT).as_posix()
-    except ValueError:
-        return None
-
-
-def resolve_article_thumbnail(article):
-    metadata = getattr(article, "metadata", {}) or {}
-    explicit_thumbnail = (
-        metadata.get("thumbnail")
-        or metadata.get("Thumbnail")
-        or getattr(article, "thumbnail", None)
-    )
-    normalized_explicit = _normalize_thumbnail_path(explicit_thumbnail)
-    if normalized_explicit:
-        return normalized_explicit
-
-    date = getattr(article, "date", None)
-    slug = getattr(article, "slug", None)
-    if not date or not slug:
-        return None
-
-    image_dir_rel = (
-        Path("images") / date.strftime("%Y") / date.strftime("%m") / str(slug)
-    )
-    image_dir = CONTENT_ROOT / image_dir_rel
-    if not image_dir.is_dir():
-        return None
-
-    for stem in ("thumbnail", "cover"):
-        named_candidate = _resolve_named_image(image_dir, stem)
-        if named_candidate:
-            return _relative_to_content_root(named_candidate)
-
-    fallback_images = [
-        path
-        for path in sorted(image_dir.iterdir(), key=lambda p: p.name.lower())
-        if path.is_file() and path.suffix.lower().lstrip(".") in IMAGE_EXTENSIONS
-    ]
-    if fallback_images:
-        return _relative_to_content_root(fallback_images[0])
-
-    return None
-
-
-JINJA_FILTERS = {
-    "resolve_article_thumbnail": resolve_article_thumbnail,
-}
-
-# Markdownのcodehilite設定（Pygmentsシンタックスハイライト）
 MARKDOWN = {
     "extension_configs": {
-        "markdown.extensions.codehilite": {"css_class": "highlight"},
         "markdown.extensions.extra": {},
-        "markdown.extensions.meta": {},
+        "markdown.extensions.codehilite": {
+            "css_class": "highlight",
+            "guess_lang": False,
+            "linenums": True,
+        },
+        "plugins.code_language": {},
     },
     "output_format": "html5",
 }
+
+DEFAULT_PAGINATION = False
+RELATIVE_URLS = True
+DELETE_OUTPUT_DIRECTORY = True

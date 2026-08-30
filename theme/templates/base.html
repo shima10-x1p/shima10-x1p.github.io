@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="{{ DEFAULT_LANG }}">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="{% block description %}{{ SITE_DESCRIPTION }}{% endblock %}">
+    <meta name="theme-color" content="#f8f9fa" data-theme-color>
+    <title>{% block title %}{{ SITENAME }}{% endblock %}</title>
+    <script>
+      (function () {
+        var saved;
+        try { saved = localStorage.getItem("theme"); } catch (error) {}
+        var theme = saved === "light" || saved === "dark"
+          ? saved
+          : (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+        document.documentElement.dataset.theme = theme;
+        document.documentElement.style.colorScheme = theme;
+      }());
+    </script>
+    <link rel="stylesheet" href="{{ SITEURL }}/theme/css/style.css">
+    <link rel="alternate" type="application/rss+xml" title="{{ SITENAME }} RSS" href="{{ SITEURL }}/{{ FEED_ALL_RSS }}">
+    {% if SITEURL.startswith('http') %}<link rel="canonical" href="{{ SITEURL }}/{% block canonical_path %}{% endblock %}">{% endif %}
+    <script defer src="{{ SITEURL }}/theme/js/theme.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">本文へ移動</a>
+
+    <div class="site-shell">
+      <header class="site-header">
+        <a class="site-name" href="{{ SITEURL }}/"{% if active_page|default('') == 'home' %} aria-current="page"{% endif %}>{{ SITENAME }}</a>
+        <nav aria-label="メインナビゲーション">
+          <a href="{{ SITEURL }}/about/"{% if active_page|default('') == 'about' %} aria-current="page"{% endif %}>About</a>
+          <a href="{{ SITEURL }}/blog/"{% if active_page|default('') == 'blog' %} aria-current="page"{% endif %}>Blog</a>
+          <button class="theme-toggle" type="button" data-theme-toggle aria-pressed="false" aria-label="ダークテーマに切り替える">
+            <span data-theme-label>Dark</span>
+          </button>
+        </nav>
+      </header>
+
+      <main id="main">
+        {% block content %}{% endblock %}
+      </main>
+
+      <footer class="site-footer">
+        <p>© {{ COPYRIGHT_YEAR }} {{ AUTHOR }}</p>
+        <div class="footer-links">
+          <a href="{{ SITEURL }}/{{ FEED_ALL_RSS }}">RSS</a>
+          <a href="#main">上へ戻る <span aria-hidden="true">↑</span></a>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>

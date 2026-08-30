@@ -1,0 +1,15 @@
+{% macro post_list(posts) -%}
+<ol class="post-list">
+  {% for post in posts %}
+    <li>
+      <a href="{{ SITEURL }}/{{ post.url }}">
+        <time datetime="{{ post.date.strftime('%Y-%m-%d') }}">{{ post.date.strftime('%Y.%m.%d') }}</time>
+        <span>{{ post.title }}</span>
+      </a>
+    </li>
+  {% else %}
+    <li class="empty-state">まだ記事はありません。</li>
+  {% endfor %}
+</ol>
+{%- endmacro %}
+

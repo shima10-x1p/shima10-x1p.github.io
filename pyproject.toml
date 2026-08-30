@@ -1,16 +1,12 @@
 [project]
-name = "shima10-x1p-github-io"
+name = "personal-site"
 version = "0.1.0"
-description = "Add your description here"
-readme = "README.md"
-requires-python = ">=3.13"
+description = "A small personal site built with Pelican"
+requires-python = ">=3.12"
 dependencies = [
-    "pelican[markdown]>=4.11.0.post0",
-    "requests>=2.32",
-    "beautifulsoup4>=4.12",
+  "pelican[markdown]>=4.11,<5",
 ]
 
-[dependency-groups]
-dev = [
-    "ruff>=0.15.0",
-]
+[tool.uv]
+package = false
+

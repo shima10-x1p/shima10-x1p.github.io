@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% import "macros.html" as ui with context %}
+{% set active_page = "home" %}
+{% block title %}{{ SITENAME }} — Home{% endblock %}
+{% block canonical_path %}{% endblock %}
+{% block content %}
+  <section class="intro" aria-labelledby="intro-title">
+    <p class="eyebrow">{{ PROFILE_EYEBROW }}</p>
+    <h1 id="intro-title">{{ AUTHOR }}</h1>
+    <p class="lead">{{ PROFILE_TAGLINE }}</p>
+    <ul class="profile-links" aria-label="外部リンク">
+      {% for label, url in SOCIAL %}
+        <li><a href="{{ url }}">{{ label }} <span aria-hidden="true">↗</span></a></li>
+      {% endfor %}
+    </ul>
+  </section>
+
+  <section class="section" aria-labelledby="posts-title">
+    <div class="section-heading">
+      <h2 id="posts-title">Latest posts</h2>
+      <a class="quiet-link" href="{{ SITEURL }}/blog/">すべて見る</a>
+    </div>
+    {{ ui.post_list(articles[:3]) }}
+  </section>
+
+  <section class="section about" aria-labelledby="about-title">
+    <div class="section-heading">
+      <h2 id="about-title">About</h2>
+      <a class="quiet-link" href="{{ SITEURL }}/about/">詳しく見る</a>
+    </div>
+    <div class="about-grid">
+      <p>{{ PROFILE_SHORT_BIO }}</p>
+      <dl>
+        <div>
+          <dt>Based in</dt>
+          <dd>{{ PROFILE_LOCATION }}</dd>
+        </div>
+        <div>
+          <dt>Interests</dt>
+          <dd>{{ PROFILE_INTERESTS }}</dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+{% endblock %}
+

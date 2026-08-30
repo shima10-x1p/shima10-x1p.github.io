@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% import "macros.html" as ui with context %}
+{% set active_page = "blog" %}
+{% block title %}Blog — {{ SITENAME }}{% endblock %}
+{% block description %}{{ SITENAME }} の記事一覧です。{% endblock %}
+{% block canonical_path %}blog/{% endblock %}
+{% block content %}
+  <section class="page-header" aria-labelledby="page-title">
+    <p class="eyebrow">Writing</p>
+    <h1 id="page-title">記事</h1>
+  </section>
+  <section class="section archive-section" aria-label="記事一覧">
+    {{ ui.post_list(dates) }}
+  </section>
+{% endblock %}
+
