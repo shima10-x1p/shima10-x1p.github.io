@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% set active_page = "blog" %}
+{% block title %}{{ article.title }} — {{ SITENAME }}{% endblock %}
+{% block description %}{{ article.summary|striptags }}{% endblock %}
+{% block canonical_path %}{{ article.url }}{% endblock %}
+{% block content %}
+  <article class="article">
+    <header class="article-header">
+      <a class="back-link" href="{{ SITEURL }}/blog/"><span aria-hidden="true">←</span> Blog</a>
+      <h1>{{ article.title }}</h1>
+      <p class="article-meta">
+        <time datetime="{{ article.date.strftime('%Y-%m-%d') }}">{{ article.locale_date }}</time>
+      </p>
+    </header>
+
+    <div class="prose">
+      {{ article.content }}
+    </div>
+
+    {% set neighbors = namespace(previous=None, next=None) %}
+    {% for candidate in articles %}
+      {% if candidate.url == article.url %}
+        {% if not loop.last %}{% set neighbors.previous = articles[loop.index0 + 1] %}{% endif %}
+        {% if not loop.first %}{% set neighbors.next = articles[loop.index0 - 1] %}{% endif %}
+      {% endif %}
+    {% endfor %}
+    {% if neighbors.previous or neighbors.next %}
+      <nav class="article-navigation" aria-label="前後の記事">
+        {% if neighbors.previous %}
+          <a class="article-navigation__previous" href="{{ SITEURL }}/{{ neighbors.previous.url }}">
+            <span class="eyebrow">Previous post</span>
+            <span><span aria-hidden="true">←</span> {{ neighbors.previous.title }}</span>
+          </a>
+        {% endif %}
+        {% if neighbors.next %}
+          <a class="article-navigation__next" href="{{ SITEURL }}/{{ neighbors.next.url }}">
+            <span class="eyebrow">Next post</span>
+            <span>{{ neighbors.next.title }} <span aria-hidden="true">→</span></span>
+          </a>
+        {% endif %}
+      </nav>
+    {% endif %}
+  </article>
+{% endblock %}
+

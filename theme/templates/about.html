@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% set active_page = "about" %}
+{% block title %}{{ page.title }} — {{ SITENAME }}{% endblock %}
+{% block description %}{{ page.summary|striptags }}{% endblock %}
+{% block canonical_path %}{{ page.url }}{% endblock %}
+{% block content %}
+  <section class="about-page" aria-labelledby="about-page-title">
+    <header class="about-profile">
+      <img
+        class="about-avatar"
+        src="{{ PROFILE_AVATAR_URL }}"
+        alt="{{ AUTHOR }}のプロフィール画像"
+        width="144"
+        height="144"
+        decoding="async"
+      >
+      <div class="about-identity">
+        <p class="eyebrow">Profile</p>
+        <h1 id="about-page-title">{{ AUTHOR }}</h1>
+        {% if PROFILE_ROLE %}<p class="about-role">{{ PROFILE_ROLE }}</p>{% endif %}
+      </div>
+    </header>
+
+    <div class="about-summary">
+      {{ page.content }}
+    </div>
+
+    <div class="about-details">
+      <section aria-labelledby="interests-title">
+        <h2 id="interests-title">Interests</h2>
+        <ul class="interest-tags">
+          {% for interest in ABOUT_INTERESTS %}
+            <li>{{ interest }}</li>
+          {% endfor %}
+        </ul>
+      </section>
+
+      <dl class="profile-facts">
+        <div>
+          <dt>Based in</dt>
+          <dd>{{ PROFILE_LOCATION }}</dd>
+        </div>
+        <div>
+          <dt>Links</dt>
+          <dd class="about-links">
+            {% for label, url in SOCIAL %}
+              <a href="{{ url }}">{{ label }} <span aria-hidden="true">↗</span></a>
+            {% endfor %}
+          </dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+{% endblock %}
+

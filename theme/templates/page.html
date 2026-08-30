@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% set active_page = "about" if page.slug == "about" else "" %}
+{% block title %}{{ page.title }} — {{ SITENAME }}{% endblock %}
+{% block description %}{{ page.summary|striptags }}{% endblock %}
+{% block canonical_path %}{{ page.url }}{% endblock %}
+{% block content %}
+  <article class="page">
+    <div class="prose page-prose">
+      {{ page.content }}
+    </div>
+  </article>
+{% endblock %}
+

@@ -1,0 +1,12 @@
+[project]
+name = "personal-site"
+version = "0.1.0"
+description = "A small personal site built with Pelican"
+requires-python = ">=3.12"
+dependencies = [
+  "pelican[markdown]>=4.11,<5",
+]
+
+[tool.uv]
+package = false
+
